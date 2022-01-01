@@ -1,15 +1,15 @@
 <html>
-    <h1>learner profile</h1>
+
 </html>
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "tutoringdb";
-$conn = new mysqli($servername, $username, $password, $dbname);
+session_start();
+include "connectToDb.php";
+include "menu.php";
+
 $query = "SELECT * FROM learners Where learnerID ='".$_GET["id"]."'";
 $result = mysqli_query($conn ,$query);
 ?>
+    <h1>learner profile</h1>
 <body>
 
 <table border = "2">

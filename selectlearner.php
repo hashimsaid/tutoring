@@ -1,16 +1,14 @@
 <html>
-    <h1> current learners  </h1>
 
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "tutoringdb";
+session_start();
+include "connectToDb.php";
+include "menu.php";
 $conn = new mysqli($servername, $username, $password, $dbname);
 $query = "SELECT * FROM learners";
 $results = $conn->query($query);
 ?>
-
+<h1> current learners  </h1>
 <body>
 
 <table border = "2">

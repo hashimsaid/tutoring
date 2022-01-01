@@ -13,7 +13,8 @@
     ?>
     <a href="signout.php">Sign out</a><br>
     <a href="manageAdmins.php">Manage adminstrators</a><br>
-    <a href="manageTutors.php">Manage tutors</a>
+    <a href="manageTutors.php">Manage tutors</a><br>
+    <a href="selectlearner.php">View learners</a><br>
 </body>
 
 </html>
