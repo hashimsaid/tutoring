@@ -32,7 +32,7 @@ $results = $conn->query($query);
             <h2 ><?php echo $row["courseName"]?></h2>
             <p><?php echo $row["description"]?></p>
             <div  dir="rtl" >
-            <a href="<?php echo $row["courseID"]?>" class="btn btn-primary stretched-link">View Course</a>
+            <a href="viewCourse.php?courseID=<?php echo $row["courseID"]?>" class="btn btn-primary stretched-link">View Course</a>
             </div>
             
         </div>
