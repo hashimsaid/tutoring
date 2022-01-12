@@ -39,6 +39,8 @@
                 echo '<a href="adminProfile.php" style="float:right;">' . $_SESSION['FirstName'] . ' ' . $_SESSION['LastName'] . '</a>';
             } else if ($_SESSION['Type'] == 'learner') {
                 echo '<a href="courses.php">My courses</a>';
+                echo '<a href="learnerCourses.php">My Courses</a>';
+                echo '<a href="UserCart.php">Cart </a>';
                 echo '<a href="learnerProfile.php" style="float:right;">' . $_SESSION['FirstName'] . ' ' . $_SESSION['LastName'] . '</a>';
             } else if ($_SESSION['Type'] == 'tutor') {
                 echo '<a href="courses.php">My courses</a>';
