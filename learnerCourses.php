@@ -13,10 +13,8 @@
 session_start();
 include "connectToDb.php";
 include "menu.php";
-$conn = new mysqli($servername, $username, $password, $dbname);
 
-
-$learnerID = 0;
+$learnerID = $_SESSION["ID"];
 $query = "SELECT courses.courseID,courses.courseName,courses.description,courses.picture FROM courses INNER JOIN selectedCourses ON selectedCourses.courseID=courses.courseID AND learnerID='".$learnerID."' ";
 $results = $conn->query($query);
 ?>
