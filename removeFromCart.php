@@ -1,18 +1,17 @@
 <?php
 
 include "connectToDb.php";
-
-$learnerID = 0;
+session_start();
+$learnerID = $_SESSION["ID"];
 
 $conn = new mysqli($servername, $username, $password, $dbname);
-if($conn->connect_error) {
+if ($conn->connect_error) {
   exit('Could not connect');
 }
 
-$sql ="DELETE FROM cart WHERE courseID='".$_GET["courseID"]."'AND learnerID='".$learnerID."' ";
+$sql = "DELETE FROM cart WHERE courseID='" . $_GET["courseID"] . "'AND learnerID='" . $learnerID . "' ";
 
 if ($conn->query($sql) === TRUE) {
-  } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-  }
-?> 
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}

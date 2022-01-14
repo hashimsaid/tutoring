@@ -1,62 +1,54 @@
 <?php
 
 include "connectToDb.php";
-
-$learnerID = 0;
+session_start();
+$learnerID = $_SESSION["ID"];
 
 $conn = new mysqli($servername, $username, $password, $dbname);
-if($conn->connect_error) {
+if ($conn->connect_error) {
   exit('Could not connect');
 }
 
 $unique = false;
 $random = 1;
-while(!$unique){
-$random = rand();
+while (!$unique) {
+  $random = rand();
 
-$checkIfFound = "SELECT * FROM orders WHERE orderID='".$random."' ";
+  $checkIfFound = "SELECT * FROM orders WHERE orderID='" . $random . "' ";
 
-$results = $conn->query($checkIfFound);
+  $results = $conn->query($checkIfFound);
 
-$cols = $results->num_rows;
+  $cols = $results->num_rows;
 
-if($cols<1){
-    $unique=true;
-}
-}
-if($unique){
-$query = "SELECT * FROM cart WHERE learnerID='".$learnerID."' ";
-$data = $conn->query($query);
-
-while ($row = $data->fetch_array(MYSQLI_ASSOC)) {
-
-$sql ="INSERT INTO orders (orderID,courseID,learnerID) VALUES ('".$random."','".$row["courseID"]."','".$learnerID."' )";
-
-if ($conn->query($sql) === TRUE) {
-    
-  } 
-  else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+  if ($cols < 1) {
+    $unique = true;
   }
-  $sql2 ="INSERT INTO selectedCourses (courseID,learnerID) VALUES ('".$row["courseID"]."','".$learnerID."' )";
-    
-    if ($conn->query($sql2) === TRUE) {
-        
-      } 
-      else {
-        echo "Error: " . $sql2 . "<br>" . $conn->error;
-      }
 }
+if ($unique) {
+  $query = "SELECT * FROM cart WHERE learnerID='" . $learnerID . "' ";
+  $data = $conn->query($query);
+
+  while ($row = $data->fetch_array(MYSQLI_ASSOC)) {
+
+    $sql = "INSERT INTO orders (orderID,courseID,learnerID) VALUES ('" . $random . "','" . $row["courseID"] . "','" . $learnerID . "' )";
+
+    if ($conn->query($sql) === TRUE) {
+    } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    $sql2 = "INSERT INTO selectedCourses (courseID,learnerID) VALUES ('" . $row["courseID"] . "','" . $learnerID . "' )";
+
+    if ($conn->query($sql2) === TRUE) {
+    } else {
+      echo "Error: " . $sql2 . "<br>" . $conn->error;
+    }
+  }
 
 
-$sql3 ="DELETE FROM cart WHERE learnerID='".$learnerID."' ";
+  $sql3 = "DELETE FROM cart WHERE learnerID='" . $learnerID . "' ";
 
-if ($conn->query($sql3) === TRUE) {
-    
-  } 
-  else {
+  if ($conn->query($sql3) === TRUE) {
+  } else {
     echo "Error: " . $sql3 . "<br>" . $conn->error;
   }
 }
-
-?> 

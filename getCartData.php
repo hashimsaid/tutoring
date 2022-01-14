@@ -7,12 +7,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 
 <?php 
-
+session_start();
 include "connectToDb.php";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-$learnerID = 0;
+$learnerID = $_SESSION["ID"];
 
 $query = "SELECT courses.courseID,courses.courseName,courses.description,courses.picture,courses.price FROM cart INNER JOIN courses ON cart.courseID=courses.courseID AND learnerID='".$learnerID."' ";
 
