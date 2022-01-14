@@ -2,7 +2,7 @@
 
 include "connectToDb.php";
 
-$learnerID = 0;
+$learnerID = $_SESSION["ID"];
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if($conn->connect_error) {
