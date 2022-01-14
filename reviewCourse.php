@@ -36,7 +36,6 @@ else{
         $queryTotal = "SELECT * FROM selectedCourses WHERE courseID='".$_GET["courseID"]."' AND rating IS NOT NULL";
         $totalResults = $conn->query($queryTotal);
         $total = $totalResults->num_rows;
-        echo $total;
         if($total !== 0){
          $averageRating = (1*$rating_1+2*$rating_2+3*$rating_3+4*$rating_4+5*$rating_5)/$total;
         
@@ -50,12 +49,46 @@ else{
         }
 
         }
-
-        
-
-
-
 ?>
+<?php
+        $query = "SELECT learners.Fname,learners.Lname,rating,review,profilePicture  FROM selectedCourses INNER JOIN learners on selectedCourses.learnerID=learners.learnerID AND selectedCourses.courseID='".$_GET["courseID"]."' AND selectedCourses.rating IS NOT NULL";
+        $results = $conn->query($query);
+        $output = $results->num_rows;
+        if($output===0){
+            echo "<h5> No Reviews yet for this course</h5>";
+        }
+        while ($row = $results->fetch_array(MYSQLI_ASSOC)) {
+            ?>
+            <div class="card"style="border:none;">
+                <div class="d-flex">
+            <img class="avatar" style="vertical-align: middle; width: 60px; height: 60px; border-radius: 50%;" src="pictures/profile/<?php echo $row["profilePicture"]?>"> 
+        <div>
+            <h5 class="pt-2 mx-2"><?php echo $row["Fname"]; echo "  ".$row["Lname"];?></h5>
+        <div class="px-3 d-flex">
+        <?php 
+            $rating = $row["rating"];
+           $count = 0;
+           while($count<5){
+            if($rating > $count){
+                ?>
+                <span class="fa fa-star checked"style="font-size: 18px;"></span>
+                <?php
+            }
+            else{
+                ?><span class="fa fa-star" style="font-size: 18px;"></span>
+                <?php
+            }
+            $count=$count+1;
+           } 
+           ?>
+        </div>
+        </div>
+        </div>
+        <textarea readonly class="form-control m-2"style="overflow: hidden; background-color: #f9f9f9 outline: none; border:none;"> <?php echo $row["review"]?></textarea>
+           <hr style="background-color:gold; height:2px">
+<?php
+        }
+        ?>
 
 
 
