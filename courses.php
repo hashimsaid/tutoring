@@ -4,6 +4,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
     </header>
@@ -16,7 +17,10 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 $query = "SELECT * FROM courses";
 $results = $conn->query($query);
 ?>
-<h1> Available Courses  </h1>
+  <div class="p-2 mb-4" style="background-color: #f0f0f0 ">
+<input style="border:none;width: 35%;" type="text" class="form-control d-flex mx-auto" name="Name_Search" id="Name_Search" placeholder="Search courses...">
+</div>	
+<div id="result">
 <body>
 
 <div class="mx-auto" style="width: 75%;">
@@ -55,10 +59,34 @@ $results = $conn->query($query);
     <?php } ?>
  
 
-
+</div>
     </div>
 
 
 </body>
+    <script>
+
+	$(document).ready(function(){
+		$('#Name_Search').keyup(function(){
+			var txt = $(this).val()
+			if(txt != ''){
+				$.ajax({
+					url: "searchCourses.php",
+					method: "post",
+					data: {search:txt},
+					dataType: "text",
+					success: function(data){
+						$('#result').html(data);
+					}
+				})
+				
+			}
+			else{
+				$('#result').html('')
+			}
+		})
+	})
+
+</script>
 
 </html>
