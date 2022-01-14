@@ -251,7 +251,7 @@ $results = $conn->query($query);
             ?>
             <div class="card"style="border:none;">
                 <div class="d-flex">
-            <img class="avatar" style="vertical-align: middle; width: 60px; height: 60px; border-radius: 50%;" src="pictures/profile/<?php echo $row["profilePicture"]?>"> 
+            <img class="avatar" style="vertical-align: middle; width: 60px; height: 60px; border-radius: 50%;" src="<?php echo $row["profilePicture"]?>"> 
         <div>
             <h5 class="pt-2 mx-2"><?php echo $row["Fname"]; echo "  ".$row["Lname"];?></h5>
         <div class="px-3 d-flex">
