@@ -61,7 +61,8 @@
                 $available = false;
             }
             if ($available == true) {
-                $sql = "insert into learners(Fname,Lname,Email,Password,Type,profilePicture) values('" . $_POST['fname'] . "','" . $_POST['lname'] . "','"  . $_POST['email'] . "','" . $_POST['password'] . "','learner','pictures/profile/default.png')";
+                $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                $sql = "insert into learners(Fname,Lname,Email,Password,Type,profilePicture) values('" . $_POST['fname'] . "','" . $_POST['lname'] . "','"  . $_POST['email'] . "','" . $hashed_password . "','learner','pictures/profile/default.png')";
                 $result = mysqli_query($conn, $sql);
                 if ($result) {
                     header("Location:home.php");

@@ -61,7 +61,8 @@
                 $available = false;
             }
             if ($available == true) {
-                $sql = "insert into tutors(Fname,Lname,Email,Password,Type) values('" . $_POST['fname'] . "','" . $_POST['lname'] . "','"  . $_POST['email'] . "','" . $_POST['password'] . "','tutor')";
+                $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                $sql = "insert into tutors(Fname,Lname,Email,Password,Type) values('" . $_POST['fname'] . "','" . $_POST['lname'] . "','"  . $_POST['email'] . "','" . $hashed_password . "','tutor')";
                 $result = mysqli_query($conn, $sql);
                 if ($result) {
                     header("Location:manageTutors.php");

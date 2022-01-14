@@ -31,57 +31,71 @@
     <?php
     if (isset($_POST['login'])) {
         if (filterText($_POST['password']) && filterEmail($_POST['email'])) {
-            $sql = "Select * from learners where Email ='" . $_POST["email"] . "' and Password='" . $_POST["password"] . "'";
+            $sql = "Select * from learners where Email ='" . $_POST["email"] . "'";
             $result = mysqli_query($conn, $sql);
             if ($row = mysqli_fetch_array($result)) {
-                $_SESSION["ID"] = $row[0];
-                $_SESSION["FirstName"] = $row["Fname"];
-                $_SESSION["LastName"] = $row["Lname"];
-                $_SESSION["Email"] = $row["Email"];
-                $_SESSION["Password"] = $row["Password"];
-                $_SESSION["Type"] = $row["Type"];
-                $_SESSION["profilePicture"] = $row["profilePicture"];
-                header("Location:learnerProfile.php");
-            } else {
-                $sql = "Select * from adminstrators where Email ='" . $_POST["email"] . "' and Password='" . $_POST["password"] . "'";
-                $result = mysqli_query($conn, $sql);
-                if ($row = mysqli_fetch_array($result)) {
+                if (password_verify($_POST['password'], $row['Password'])) {
                     $_SESSION["ID"] = $row[0];
                     $_SESSION["FirstName"] = $row["Fname"];
                     $_SESSION["LastName"] = $row["Lname"];
                     $_SESSION["Email"] = $row["Email"];
                     $_SESSION["Password"] = $row["Password"];
                     $_SESSION["Type"] = $row["Type"];
-                    header("Location:adminProfile.php");
+                    $_SESSION["profilePicture"] = $row["profilePicture"];
+                    header("Location:learnerProfile.php");
                 } else {
-                    $sql = "Select * from tutors where Email ='" . $_POST["email"] . "' and Password='" . $_POST["password"] . "'";
-                    $result = mysqli_query($conn, $sql);
-                    if ($row = mysqli_fetch_array($result)) {
+                    echo "Invalid email or password!";
+                }
+            } else {
+                $sql = "Select * from adminstrators where Email ='" . $_POST["email"] . "'";
+                $result = mysqli_query($conn, $sql);
+                if ($row = mysqli_fetch_array($result)) {
+                    if (password_verify($_POST['password'], $row['Password'])) {
                         $_SESSION["ID"] = $row[0];
                         $_SESSION["FirstName"] = $row["Fname"];
                         $_SESSION["LastName"] = $row["Lname"];
                         $_SESSION["Email"] = $row["Email"];
                         $_SESSION["Password"] = $row["Password"];
                         $_SESSION["Type"] = $row["Type"];
-                        header("Location:tutorProfile.php");
+                        header("Location:adminProfile.php");
                     } else {
-                        $sql = "Select * from auditor where Email ='" . $_POST["email"] . "' and Password='" . $_POST["password"] . "'";
-                        $result = mysqli_query($conn, $sql);
-                        if ($row = mysqli_fetch_array($result)) {
+                        echo "Invalid email or password!";
+                    }
+                } else {
+                    $sql = "Select * from tutors where Email ='" . $_POST["email"] . "'";
+                    $result = mysqli_query($conn, $sql);
+                    if ($row = mysqli_fetch_array($result)) {
+                        if (password_verify($_POST['password'], $row['Password'])) {
                             $_SESSION["ID"] = $row[0];
                             $_SESSION["FirstName"] = $row["Fname"];
                             $_SESSION["LastName"] = $row["Lname"];
                             $_SESSION["Email"] = $row["Email"];
                             $_SESSION["Password"] = $row["Password"];
                             $_SESSION["Type"] = $row["Type"];
-                            header("Location:auditorProfile.php");
+                            header("Location:tutorProfile.php");
+                        } else {
+                            echo "Invalid email or password!";
+                        }
+                    } else {
+                        $sql = "Select * from auditor where Email ='" . $_POST["email"] . "'";
+                        $result = mysqli_query($conn, $sql);
+                        if ($row = mysqli_fetch_array($result)) {
+                            if (password_verify($_POST['password'], $row['Password'])) {
+                                $_SESSION["ID"] = $row[0];
+                                $_SESSION["FirstName"] = $row["Fname"];
+                                $_SESSION["LastName"] = $row["Lname"];
+                                $_SESSION["Email"] = $row["Email"];
+                                $_SESSION["Password"] = $row["Password"];
+                                $_SESSION["Type"] = $row["Type"];
+                                header("Location:auditorProfile.php");
+                            }
                         } else {
                             echo "Invalid email or password!";
                         }
                     }
                 }
             }
-        }else {
+        } else {
             echo "Please make sure the email is valid and don't use special characters in the password!";
         }
     }

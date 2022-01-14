@@ -60,7 +60,8 @@
                 $available = false;
             }
             if ($available == true) {
-                $sql = "insert into adminstrators(Fname,Lname,Email,Password,Type) values('" . $_POST['fname'] . "','" . $_POST['lname'] . "','"  . $_POST['email'] . "','" . $_POST['password'] . "','adminstrator')";
+                $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                $sql = "insert into adminstrators(Fname,Lname,Email,Password,Type) values('" . $_POST['fname'] . "','" . $_POST['lname'] . "','"  . $_POST['email'] . "','" . $hashed_password . "','adminstrator')";
                 $result = mysqli_query($conn, $sql);
                 if ($result) {
                     header("Location:manageAdmins.php");
