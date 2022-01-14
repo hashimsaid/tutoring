@@ -53,7 +53,6 @@ if ($output === 0) {
     echo "<h5> No Reviews yet for this course</h5>";
 }
 while ($row = $results->fetch_array(MYSQLI_ASSOC)) {
-    echo $row["profilePicture"];
 ?>
     <div class="card" style="border:none;">
         <div class="d-flex">
@@ -83,6 +82,5 @@ while ($row = $results->fetch_array(MYSQLI_ASSOC)) {
         <textarea readonly class="form-control m-2" style="overflow: hidden; background-color: #f9f9f9 outline: none; border:none;"> <?php echo $row["review"] ?></textarea>
         <hr style="background-color:gold; height:2px">
     <?php
-    echo $row["profilePicture"];
 }
     ?>

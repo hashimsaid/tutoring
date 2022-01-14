@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2022 at 11:13 PM
+-- Generation Time: Jan 15, 2022 at 12:56 AM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- PHP Version: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,21 +32,31 @@ CREATE TABLE `adminstrators` (
   `Fname` varchar(50) NOT NULL,
   `Lname` varchar(50) NOT NULL,
   `Email` varchar(50) NOT NULL,
-  `Password` varchar(50) NOT NULL
+  `Password` varchar(255) NOT NULL,
+  `Type` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `adminstrators`
+--
+
+INSERT INTO `adminstrators` (`adminID`, `Fname`, `Lname`, `Email`, `Password`, `Type`) VALUES
+(3, 'admin', 'admin', 'admin@gmail.com', '$2y$10$dzCXtC3010tQxNBx05lQ9exAjVpJsq8PLD5H0tM6qYlayrlBbWH..', 'adminstrator'),
+(6, 'asd', 'Tarek', 'fady1900456@miuegypt.edu.eg', '$2y$10$bnLT/e7qXWAvruJDoSDl7./h403jALiIfHXpvE0Xi6shiMNzdq1si', 'adminstrator');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `auditor`
+-- Table structure for table `auditors`
 --
 
-CREATE TABLE `auditor` (
+CREATE TABLE `auditors` (
   `auditorID` int(11) NOT NULL,
-  `Fname` varchar(50) NOT NULL,
-  `Lname` varchar(50) NOT NULL,
-  `Email` varchar(50) NOT NULL,
-  `Password` varchar(50) NOT NULL
+  `Fname` varchar(255) NOT NULL,
+  `Lname` varchar(255) DEFAULT NULL,
+  `Email` varchar(255) DEFAULT NULL,
+  `Password` varchar(255) DEFAULT NULL,
+  `Type` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -81,7 +91,7 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`courseID`, `courseName`, `averageRating`, `price`, `description`, `picture`, `approved`) VALUES
-(0, 'Machine Learning', '4', 4000, 'Machine learning is a method of data analysis that automates analytical model building. It is a branch of artificial intelligence based on the idea that systems can learn from data, identify patterns and make decisions with minimal human intervention.', 'machineLearning.jpeg', 1),
+(0, 'Machine Learning', '3', 4000, 'Machine learning is a method of data analysis that automates analytical model building. It is a branch of artificial intelligence based on the idea that systems can learn from data, identify patterns and make decisions with minimal human intervention.', 'machineLearning.jpeg', 1),
 (1, 'Intro to programming', '4', 3300, 'Learn the basics of programming through HTML, CSS, Python, and JavaScript. Get extensive practice with hands-on exercises and projects that demonstrate your grasp of coding fundamentals, and build confidence in your ability to think and problem-solve like a programmer.', 'introtoprogramming.png', 1);
 
 -- --------------------------------------------------------
@@ -92,19 +102,21 @@ INSERT INTO `courses` (`courseID`, `courseName`, `averageRating`, `price`, `desc
 
 CREATE TABLE `learners` (
   `learnerID` int(11) NOT NULL,
-  `Fname` varchar(50) NOT NULL,
-  `Lname` varchar(50) NOT NULL,
-  `Email` varchar(50) NOT NULL,
-  `Password` varchar(50) NOT NULL,
-  `profilePictiure` text NOT NULL
+  `Fname` varchar(255) NOT NULL,
+  `Lname` varchar(255) DEFAULT NULL,
+  `Email` varchar(255) DEFAULT NULL,
+  `Password` varchar(255) DEFAULT NULL,
+  `profilePicture` text DEFAULT NULL,
+  `Type` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `learners`
 --
 
-INSERT INTO `learners` (`learnerID`, `Fname`, `Lname`, `Email`, `Password`, `profilePictiure`) VALUES
-(0, 'Shihab', 'Kandil', 'shihab@gmail.com', '1234', 'profile1.jpg');
+INSERT INTO `learners` (`learnerID`, `Fname`, `Lname`, `Email`, `Password`, `profilePicture`, `Type`) VALUES
+(1, 'Shihab', 'Kandil', 'shihab@gmail.com', '$2y$10$xcPKesBMOwXWuihFVwzVKOm8i8EaZDTIP0CF5MTKai1ejH7WMEzBi', 'pictures/profile/default.png', 'learner'),
+(2, 'Fady', 'Tarek', 'fady@gmail.com', '$2y$10$XdvAxsPmefZ.MMhYvemFseAV2h2ZG4zCqbeHOMcdIdru4N09NbQvm', 'pictures/profile/default.png', 'learner');
 
 -- --------------------------------------------------------
 
@@ -135,14 +147,13 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`orderID`, `courseID`, `learnerID`) VALUES
-(2041636662, 0, 0),
-(2041636662, 1, 0),
-(2125965197, 0, 0),
-(2125965197, 1, 0),
-(905652966, 0, 0),
-(905652966, 1, 0),
-(650189597, 0, 0),
-(650189597, 1, 0);
+(1823682149, 0, 1),
+(1823682149, 1, 1),
+(514864683, 0, 1),
+(937556936, 1, 2),
+(937556936, 0, 2),
+(456430094, 0, 2),
+(206761981, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -162,8 +173,8 @@ CREATE TABLE `selectedcourses` (
 --
 
 INSERT INTO `selectedcourses` (`courseID`, `learnerID`, `rating`, `review`) VALUES
-(0, 0, NULL, NULL),
-(1, 0, 4, 'good course content');
+(0, 1, 1, 'bad'),
+(0, 2, 5, 'test');
 
 -- --------------------------------------------------------
 
@@ -173,11 +184,19 @@ INSERT INTO `selectedcourses` (`courseID`, `learnerID`, `rating`, `review`) VALU
 
 CREATE TABLE `tutors` (
   `tutorID` int(11) NOT NULL,
-  `Fname` varchar(50) NOT NULL,
-  `Lname` varchar(50) NOT NULL,
-  `Email` varchar(50) NOT NULL,
-  `Password` varchar(50) NOT NULL
+  `Fname` varchar(255) NOT NULL,
+  `Lname` varchar(255) DEFAULT NULL,
+  `Email` varchar(255) DEFAULT NULL,
+  `Password` varchar(255) DEFAULT NULL,
+  `Type` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tutors`
+--
+
+INSERT INTO `tutors` (`tutorID`, `Fname`, `Lname`, `Email`, `Password`, `Type`) VALUES
+(1, 'asd', 'sfgds', 'sad@asd.com', '$2y$10$GzslTlOJ1GBltKEvbB1O4OlBSeH/jUsxZSGqGKP7ZzRpXgdAZSKR.', 'tutor');
 
 --
 -- Indexes for dumped tables
@@ -187,13 +206,14 @@ CREATE TABLE `tutors` (
 -- Indexes for table `adminstrators`
 --
 ALTER TABLE `adminstrators`
+  ADD PRIMARY KEY (`adminID`),
   ADD KEY `adminID` (`adminID`);
 
 --
--- Indexes for table `auditor`
+-- Indexes for table `auditors`
 --
-ALTER TABLE `auditor`
-  ADD KEY `adminID` (`auditorID`);
+ALTER TABLE `auditors`
+  ADD PRIMARY KEY (`auditorID`);
 
 --
 -- Indexes for table `cart`
@@ -226,7 +246,35 @@ ALTER TABLE `selectedcourses`
 -- Indexes for table `tutors`
 --
 ALTER TABLE `tutors`
-  ADD KEY `adminID` (`tutorID`);
+  ADD PRIMARY KEY (`tutorID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `adminstrators`
+--
+ALTER TABLE `adminstrators`
+  MODIFY `adminID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `auditors`
+--
+ALTER TABLE `auditors`
+  MODIFY `auditorID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `learners`
+--
+ALTER TABLE `learners`
+  MODIFY `learnerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tutors`
+--
+ALTER TABLE `tutors`
+  MODIFY `tutorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
