@@ -5,6 +5,31 @@
 	body {
 		background-image: url("pictures/website/backgroundPattern.png");
 	}
+
+	#send{
+		text-decoration: none;
+		background-color: #38968d;
+		color: white;
+		border-radius: 10%;
+		padding: 6px;
+		font-weight: bold;
+	}
+
+	.box {
+            box-shadow: 10px 10px rgba(0, 0, 0, 0.5);
+            margin-top: 5%;
+            margin-bottom: 5%;
+            padding: 30px;
+            top: 10%;
+            background-color: white;
+            width: 50%;
+            
+
+        }
+
+		#Name_Search{
+		   width: 52%;
+		}
 </style>
 
 <?php
@@ -19,9 +44,31 @@ include "menu.php";
 <form>
 
 	<br>
-	<div class="mx-auto" style="width: 75%;">
+	<div class="p-4" style="width: 50%;">
 		<input type="text" class="form-control" name="Name_Search" id="Name_Search" placeholder="Enter The Name You Want To Search">
 		<div id="result"></div>
+		<div class="p-2">
+	<?php
+		$lastMessage = "SELECT DISTINCT sent_by FROM messages WHERE received_by = " . $_SESSION['ID'];
+		$lastMessageResult = mysqli_query($conn, $lastMessage) or die(mysqli_error($conn));
+		if (mysqli_num_rows($lastMessageResult) > 0) {
+			while ($lastMessageRow = mysqli_fetch_array($lastMessageResult)) {
+				$sent_by = $lastMessageRow['sent_by'];
+				$getSender = "SELECT * FROM learners WHERE learnerID = '$sent_by'";
+				$getSenderResult = mysqli_query($conn, $getSender) or die(mysqli_error($conn));
+				$getSenderRow = mysqli_fetch_array($getSenderResult);
+		?>
+				<div class="box" >
+					<img src="<?= $getSenderRow['profilePicture'] ?>" class="img-circle" width="40" style="border-radius: 50%;" />
+					<?= $getSenderRow['Fname']; ?>
+					<a id="send" href="./message.php?receiver=<?= $sent_by ?>">Send message</a>
+				</div><br>
+		<?php }
+		} else {
+			echo "No conversations yet!";
+		}
+	?>
+</div>
 	</div>
 
 </form>
@@ -53,25 +100,3 @@ include "menu.php";
 </script>
 
 
-<div class="mx-auto" style="width: 75%;">
-	<?php
-	$lastMessage = "SELECT DISTINCT sent_by FROM messages WHERE received_by = " . $_SESSION['ID'];
-	$lastMessageResult = mysqli_query($conn, $lastMessage) or die(mysqli_error($conn));
-	if (mysqli_num_rows($lastMessageResult) > 0) {
-		while ($lastMessageRow = mysqli_fetch_array($lastMessageResult)) {
-			$sent_by = $lastMessageRow['sent_by'];
-			$getSender = "SELECT * FROM learners WHERE learnerID = '$sent_by'";
-			$getSenderResult = mysqli_query($conn, $getSender) or die(mysqli_error($conn));
-			$getSenderRow = mysqli_fetch_array($getSenderResult);
-	?>
-			<div>
-				<img src="<?= $getSenderRow['profilePicture'] ?>" class="img-circle" width="40" style="border-radius: 50%;" />
-				<?= $getSenderRow['Fname']; ?>
-				<a href="./message.php?receiver=<?= $sent_by ?>">Send message</a>
-			</div><br>
-	<?php }
-	} else {
-		echo "No conversations yet!";
-	}
-	?>
-</div>

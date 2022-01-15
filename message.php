@@ -17,12 +17,13 @@ $getReceiver = "SELECT * FROM learners WHERE learnerID = '$receiver'";
 $getReceiverResult = mysqli_query($conn,$getReceiver) or die(mysqli_error($conn));
 $getReceiverRow = mysqli_fetch_array($getReceiverResult);
 ?>
-
+<div class="m-5">
 <img src="<?=$getReceiverRow['profilePicture']?>" class="img-circle" width = "40"/>
 <strong><?=$getReceiverRow['Fname']?></strong>
+</div>
 
 <div id="chat-box">
-
+	
 </div>
 
 <div class="mx-auto" style="width: 75%;">

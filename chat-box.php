@@ -6,6 +6,7 @@ include 'connectToDb.php';
 $receiver = $_GET['receiver'];
 ?>
 
+<div class="m-5">
 <table class="table table-striped">
 	<tr> 
 		<th> Name </th> 
@@ -29,3 +30,4 @@ $receiver = $_GET['receiver'];
 	}
 	?>		
 </table>
+</div>

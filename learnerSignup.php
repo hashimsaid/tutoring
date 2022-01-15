@@ -71,7 +71,7 @@
                 }
                 $sql = "Select * from auditor where Email ='" . $_POST["email"] . "' ";
                 $result = mysqli_query($conn, $sql);
-                if ($row = mysqli_fetch_array($result)) {
+                if ($result) {
                     echo "<div class='warning'><br>Someone else is using that email!</div>";
                     $available = false;
                 }
