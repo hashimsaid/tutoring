@@ -6,12 +6,7 @@
 <?php
 session_start();
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "lab10";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
+include 'connectToDb.php';
 
 include "menu.php";
  
@@ -67,13 +62,13 @@ $lastMessageResult = mysqli_query($conn,$lastMessage) or die(mysqli_error($conn)
 if(mysqli_num_rows($lastMessageResult) > 0) {
 	while($lastMessageRow = mysqli_fetch_array($lastMessageResult)) {
 		$sent_by = $lastMessageRow['sent_by'];
-		$getSender = "SELECT * FROM user WHERE ID = '$sent_by'";
+		$getSender = "SELECT * FROM learners WHERE learnerID = '$sent_by'";
 		$getSenderResult = mysqli_query($conn,$getSender) or die(mysqli_error($conn));
 		$getSenderRow = mysqli_fetch_array($getSenderResult);
 		?>
 		<div>
-		<img src = "./images/<?=$getSenderRow['image']?>" class="img-circle" width = "40"/> 
-		<?=$getSenderRow['Name'];?>
+		<img src = "<?=$getSenderRow['profilePicture']?>" class="img-circle" width = "40"/> 
+		<?=$getSenderRow['Fname'];?>
 		<a href="./message.php?receiver=<?=$sent_by?>">Send message</a>
 		</div><br>
 <?php }

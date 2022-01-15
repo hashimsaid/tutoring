@@ -23,7 +23,7 @@ $cols = $results->num_rows;
 if($cols<1){
     ?>
     <div class="mx-auto" style="width: 75%;">
-    <img src="pictures/utilites/emptycart.png" class="w-100">
+    <img src="pictures/utilities/emptycart.png" class="w-100">
 </div>
     <?php
 }else

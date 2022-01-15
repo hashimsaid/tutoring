@@ -9,23 +9,17 @@
 session_start();
 
 // include DB connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "lab10";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+include 'connectToDb.php';
 $receiver = $_GET['receiver'];
 include "menu.php";
 
-$getReceiver = "SELECT * FROM user WHERE id = '$receiver'";
+$getReceiver = "SELECT * FROM learners WHERE learnerID = '$receiver'";
 $getReceiverResult = mysqli_query($conn,$getReceiver) or die(mysqli_error($conn));
 $getReceiverRow = mysqli_fetch_array($getReceiverResult);
 ?>
 
-<img src="./images/<?=$getReceiverRow['image']?>" class="img-circle" width = "40"/>
-<strong><?=$getReceiverRow['Name']?></strong>
+<img src="<?=$getReceiverRow['profilePicture']?>" class="img-circle" width = "40"/>
+<strong><?=$getReceiverRow['Fname']?></strong>
 
 <div id="chat-box">
 

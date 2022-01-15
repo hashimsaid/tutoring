@@ -20,7 +20,7 @@ include "menu.php";
 
 <script type="text/javascript">
 
-var timer, delay = 2000;
+var timer, delay = 1000;
 
 timer = setInterval(function(){
      $.ajax({

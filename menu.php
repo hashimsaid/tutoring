@@ -41,6 +41,7 @@
                 echo '<a href="courses.php">Buy Courses</a>';
                 echo '<a href="learnerCourses.php">My Courses</a>';
                 echo '<a href="UserCart.php">Cart </a>';
+                echo '<a href="messages.php">Chat</a>';
                 echo '<a href="learnerProfile.php" style="float:right;">' . $_SESSION['FirstName'] . ' ' . $_SESSION['LastName'] . '</a>';
             } else if ($_SESSION['Type'] == 'tutor') {
                 echo '<a href="courses.php">My courses</a>';

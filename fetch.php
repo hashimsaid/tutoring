@@ -1,15 +1,10 @@
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "lab10";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
+include 'connectToDb.php';
 
 $output = '';
 
-$sql = "SELECT * FROM user WHERE Name LIKE '%".$_POST['search']."%'";
+$sql = "SELECT * FROM learners WHERE Fname LIKE '%".$_POST['search']."%'";
 
 $result = mysqli_query($conn,$sql);
 
@@ -26,8 +21,8 @@ if(mysqli_num_rows($result)>0){
     while($row = mysqli_fetch_array($result)){
 
         $output.= '<tr>
-                        <td>'.$row["Name"].'<td>
-                        <td>'."<a href=".'/Study/Codes/LiveChat2/message.php?receiver='.$row['ID'].'>'."> Send message </a>";'
+                        <td>'.$row["Fname"].'<td>
+                        <td>'."<a href=".'message.php?receiver='.$row[0].'>'."> Send message </a>";'
                     <tr>
                     </table> 
                     </div>';                
