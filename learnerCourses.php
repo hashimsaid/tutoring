@@ -34,8 +34,8 @@ $results = $conn->query($query);
   <div class="card-columns col justify-content-center mx-auto" style="width:90%;">
     <?php while ($row = $results->fetch_array(MYSQLI_ASSOC)) { ?>
 
-      <div class="card itemCard">
-        <div class="card-body text-center" style="box-shadow: 10px 10px rgba(0, 0, 0, 0.5);">
+      <div class="card itemCard"  style="width:500px; height:400px; box-shadow: 10px 10px rgba(0, 0, 0, 0.5);">
+        <div class="card-body text-center">
           <img class="card-img-top" src="pictures/courses/<?php echo $row["picture"] ?>">
           <h4 class="pt-2"><b><?php echo $row["courseName"] ?></b></h4>
           <a href="viewCourse.php?courseID=<?php echo $row["courseID"] ?>" class="stretched-link"></a>

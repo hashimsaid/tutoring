@@ -95,23 +95,22 @@ $results = $conn->query($query);
     });
 </script>
 <form id="form1" method="post">
-    <div id="display">
 
-        <table>
-            <th><input type="checkbox" id="select-all" /></th>
+    <table>
+        <th><input type="checkbox" id="select-all" /></th>
 
-            <th>Name</th>
-            <th>Price</th>
-            <th>Description</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
 
-            <?php
-            while ($row = $results->fetch_array(MYSQLI_ASSOC)) {
-                $f = $row['courseName'];
-                $l = $row['price'];
-                $t = $row['description'];
-                $courseID = $row['courseID'];
+        <?php
+        while ($row = $results->fetch_array(MYSQLI_ASSOC)) {
+            $f = $row['courseName'];
+            $l = $row['price'];
+            $t = $row['description'];
+            $courseID = $row['courseID'];
 
-                echo "<tr>
+            echo "<tr>
         <td><input type='checkbox' name='check[]' value='$courseID' id = 'e'
         /></td>
         <td>$f</td>
@@ -120,12 +119,11 @@ $results = $conn->query($query);
         
         
         </tr>";
-            }
-            ?>
-        </table>
-    </div>
+        }
+        ?>
+    </table>
     </p>
-    <input type="submit" name='Approve' value="Approve " class="link">
+    <input type="submit" name='Approve' value="Approve " class="link" id="s">
 
 
 </form>
