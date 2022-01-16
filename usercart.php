@@ -8,9 +8,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <style>
-        /* body {
+        body {
             background-image: url("pictures/website/backgroundPattern.png");
-        } */
+        }
     </style>
 </header>
 

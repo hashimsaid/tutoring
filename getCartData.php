@@ -20,8 +20,16 @@ $cols = $results->num_rows;
 
 if ($cols < 1) {
 ?>
+    <script>
+
+    </script>
     <div class="mx-auto m-4" style="width: 75%;">
         <img src="pictures/utilities/emptycart.png" class="w-100">
+        <style>
+            body {
+                background-image: none;
+            }
+        </style>
     </div>
     <?php
 } else {
