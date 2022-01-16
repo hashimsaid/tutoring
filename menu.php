@@ -127,7 +127,7 @@
                 </div>
             <?php
             } else if ($_SESSION['Type'] == 'tutor') {
-                echo '<a href="courses.php">My courses</a>';
+                echo '<a href="getmaterials.php">Upload Material</a>';
             ?>
                 <div class="dropdown">
                     <button class="dropbtn"><?php echo $_SESSION['FirstName'] . " " . $_SESSION['LastName']; ?></button>
