@@ -49,7 +49,7 @@ if (isset($_POST['submit'])) {
     $notapproved = 0;
 
     $path = $_FILES['path'];
-    $target_dir = "pictures/courses/";
+    $target_dir = "";
     $target_file = $target_dir . basename($_FILES['path']['name']);
     $tmp_name = $_FILES['path']['tmp_name'];
     $name = basename($_FILES['path']['name']);
@@ -65,7 +65,7 @@ if (isset($_POST['submit'])) {
         }
     }
 
-    move_uploaded_file($tmp_name, "$target_dir/$name");
+    move_uploaded_file($tmp_name, "pictures/courses/$name");
 }
 
 ?>
