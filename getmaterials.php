@@ -6,16 +6,20 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 
-<h3 class="bg-success p-2 text-dark bg-opacity-10"> Add Materials </h3>
+
 
   <form action="" method="post" name="edit" enctype="multipart/form-data">
-CourseID : <input type = 'text'  name= "courseID"  >
+      
+  <div class = "mx-auto" style = "width:25% ;"> 
+  <h3 > Add Materials </h3>
+  <br>
+CourseID : <input type = 'text'  name= "courseID" class="form-control" >
 
-<br><br>
+<br>
  <input type = 'file' name='path' id="formFile" class="form-control" >
 <br>
  <input type = 'submit' class="btn btn-primary" name="upload">
-
+</div>
 </form>
 
 <?php
