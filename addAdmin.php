@@ -7,6 +7,12 @@
             background-image: url("pictures/website/backgroundPattern.png");
         }
 
+        .warning {
+            color: red;
+            text-align: center;
+            font-weight: bold;
+        }
+
         .box {
             box-shadow: 10px 10px rgba(0, 0, 0, 0.5);
             margin: auto;
@@ -15,15 +21,8 @@
             padding: 50px;
             top: 10%;
             background-color: white;
-            width: 20%;
+            width: 35%;
             text-align: center;
-
-        }
-
-        .warning {
-            color: red;
-            text-align: center;
-            font-weight: bold;
         }
     </style>
 </head>
@@ -37,14 +36,13 @@
     ?>
 
     <div class="box">
-        <h2>Add an admin!</h2>
+        <h2>Add an admin!</h2><br>
         <form name="signup" action="" method="post" onsubmit="return validateSignup()">
             <input type="text" name="fname" placeholder="First Name"><br>
             <input type="text" name="lname" placeholder="Last Name"><br>
             <input type="text" name="email" placeholder="Email"><br>
             <input type="password" name="password" placeholder="Password"><br>
-            <input type="submit" value="Add" name="signup"><br>
-            <a href="manageAdmins.php">Back</a>
+            <input type="submit" value="Add admin" name="signup"><br>
         </form>
 
         <?php
@@ -71,18 +69,18 @@
                 }
                 $sql = "Select * from auditor where Email ='" . $_POST["email"] . "' ";
                 $result = mysqli_query($conn, $sql);
-                if ($row = mysqli_fetch_array($result)) {
+                if ($result) {
                     echo "<div class='warning'><br>Someone else is using that email!</div>";
                     $available = false;
                 }
                 if ($available == true) {
                     $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                    $sql = "insert into adminstrators(Fname,Lname,Email,Password,Type) values('" . $_POST['fname'] . "','" . $_POST['lname'] . "','"  . $_POST['email'] . "','" . $hashed_password . "','adminstrator')";
+                    $sql = "insert into adminstrators(Fname,Lname,Email,Password,Type) values('" . $_POST['fname'] . "','" . $_POST['lname'] . "','"  . $_POST['email'] . "','" . $hashed_password . "','adminstrator'";
                     $result = mysqli_query($conn, $sql);
                     if ($result) {
                         header("Location:manageAdmins.php");
                     } else {
-                        echo "error";
+                        echo "<div class='warning'><br>Error inserting into database!</div>";
                     }
                 }
             } else {
