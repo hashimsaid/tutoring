@@ -487,4 +487,148 @@ $results = $conn->query($query);
     }
 </style>
 
+<<<<<<< HEAD
+=======
+<style>
+    
+    @import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+    @import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
+
+
+.button{
+  background-color: gold;
+  border: none;
+  color: black;
+  padding: 8px 20px;
+  text-decoration: none;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.button:hover{
+    color: white;
+  background-color: black;
+}
+
+.rating>label {
+    color: #ddd;
+    float: right
+}
+
+.rating>[id^="star"]:checked~label,
+.rating:not(:checked)>label:hover,
+.rating:not(:checked)>label:hover~label {
+    color: #FFD700
+}
+
+.rating>[id^="star"]:checked+label:hover,
+.rating>[id^="star"]:checked~label:hover,
+.rating>label:hover~[id^="star"]:checked~label,
+.rating>[id^="star"]:checked~label:hover~label {
+    color: #FFED85
+}
+
+.rating {
+    border: none;
+    margin-right: 49px
+}
+
+
+.rating>[id^="star"] {
+    display: none
+}
+
+.rating>label:before {
+    margin: 2px;
+    font-size: 1.5em;
+    font-family: FontAwesome;
+    content: "\f005";
+}
+
+.bar-container {
+    width: 100%;
+    background-color: #f1f1f1;
+    text-align: center;
+    color: white;
+    border-radius: 20px;
+    margin-bottom: 5px
+}
+.fa {
+  font-size: 25px;
+}
+.checked {
+  color: Gold;
+}
+.side {
+  float: left;
+  width: 15%;
+  margin-top:10px;
+}
+
+.middle {
+  margin-top:10px;
+  float: left;
+  width: 70%;
+}
+
+.right {
+  text-align: right;
+}
+
+.bar-container {
+  width: 100%;
+  background-color: #f1f1f1;
+  text-align: center;
+  color: white;
+}
+
+.bar-5 {height: 18px; background-color: Gold;border-radius: 10px;}
+.bar-4 {height: 18px; background-color: Gold;border-radius: 10px;}
+.bar-3 {height: 18px; background-color: Gold;border-radius: 10px;}
+.bar-2 {height: 18px; background-color: Gold;border-radius: 10px;}
+.bar-1 {height: 18px; background-color: Gold;border-radius: 10px;}
+
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 12px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+    </style>
+>>>>>>> c9ec635aa3902f99e5c3ce0f6533b539146bcf71
 </html>

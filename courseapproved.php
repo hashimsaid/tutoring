@@ -8,18 +8,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 $query = "SELECT * FROM courses WHERE approved = '0'";
 $results = $conn->query($query);
 
-// if(isset ($_POST['Approve'])){
-//     var_dump($_POST['check']);
-//     foreach ($_POST['check'] as $value) {
 
-//         // $updatePending="update courses set approved='1' where courseID = courseID"; 
-//         // $result2=mysqli_query($conn, $updatePending);   
-//         $res = "UPDATE courses SET approved='1' WHERE courseID = '$value'";  
-//         $res = mysqli_query($conn,$res);
-//         // $stmt->bindParam('courseID',$value);
-//         // $stmt->execute();
-//     }
-// }
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
 ></script>
