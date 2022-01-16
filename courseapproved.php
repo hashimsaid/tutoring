@@ -1,4 +1,56 @@
 <html>
+<style>
+        
+
+        .link {
+            margin: 50px;
+            text-decoration: none;
+            background-color: #38968d;
+            color: white;
+            border-radius: 10%;
+            padding: 6px;
+            font-weight: bold;
+        }
+
+        .link:hover {
+            text-decoration: none;
+            background-color: #1b6145;
+            color: white;
+            border-radius: 10%;
+            padding: 6px;
+            font-weight: bold;
+        }
+
+        table {
+            margin: 50px;
+            border-collapse: collapse;
+            width: 70%;
+        }
+
+        td,
+        th {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        tr {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #38968d;
+            color: white;
+        }
+    </style>
+
+
 <?php
 $servername = "localhost";
 $username = "root";
@@ -42,9 +94,9 @@ for (var i = 0; i < checkboxes.length; i++) {
 });
 </script>
 <form id="form1" method="post">
-    <div id = "display">
+    <div id = "display" >
 
-<table border="1" cellpadding="5" cellspacing="0">
+<table>
     <th><input type="checkbox" id="select-all" /></th>
 
         <th>Name</th>
@@ -72,7 +124,7 @@ for (var i = 0; i < checkboxes.length; i++) {
 </table>
                 </div>
                 </p>
-  <input type="submit" name='Approve' value="Approve " id= "s" >
+  <input type="submit" name='Approve' value="Approve " id= "s" class = "link" >
 
 
 </form>
