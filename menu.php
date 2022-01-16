@@ -3,50 +3,6 @@
 <head>
     <link rel="stylesheet" href="css/main.css">
     <style>
-        .dropbtn {
-            background-color: #135569;
-            color: white;
-            padding: 16px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f1f1f1;
-            color: #000000;
-            min-width: 160px;
-            overflow: auto;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
-
-        .dropdown-content a {
-            background-color: white;
-            color: red;
-            text-decoration: none;
-            display: block;
-        }
-
-        .dropdown a:hover {
-            background-color: #ddd;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown:hover .dropbtn {
-            background-color: #113355;
-        }
-
         * {
             margin: 0;
         }
@@ -62,15 +18,59 @@
             padding: 5px;
             text-decoration: none;
             font-size: 20px;
-        }
-
-        a {
             margin: 20px;
         }
 
         .topnav a:hover {
             background-color: #ddd;
             color: black;
+        }
+
+        .dropbtn {
+            background-color: #135569;
+            color: white;
+            font-weight: bold;
+            padding: 14px;
+            font-size: 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #f9f9f9;
+            min-width: 200px;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            text-align: center;
+            color: black;
+            margin: 0;
+            font-weight: bold;
+            font-size: 15px;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #113355;
         }
 
         #menuBar {
@@ -126,13 +126,27 @@
                         <a href="signOut.php">Sign Out</a>
                     </div>
                 </div>
-        <?php
+            <?php
             } else if ($_SESSION['Type'] == 'tutor') {
                 echo '<a href="courses.php">My courses</a>';
-                echo '<a href="tutorProfile.php" >' . $_SESSION['FirstName'] . ' ' . $_SESSION['LastName'] . '</a>';
+            ?>
+                <div class="dropdown">
+                    <button class="dropbtn"><?php echo $_SESSION['FirstName'] . " " . $_SESSION['LastName']; ?></button>
+                    <div class="dropdown-content">
+                        <a href="signOut.php">Sign Out</a>
+                    </div>
+                </div>
+            <?php
             } else if ($_SESSION['Type'] == 'auditor') {
                 echo '<a href="courses.php">My courses</a>';
-                echo '<a href="auditorProfile.php">' . $_SESSION['FirstName'] . ' ' . $_SESSION['LastName'] . '</a>';
+            ?>
+                <div class="dropdown">
+                    <button class="dropbtn"><?php echo $_SESSION['FirstName'] . " " . $_SESSION['LastName']; ?></button>
+                    <div class="dropdown-content">
+                        <a href="signOut.php">Sign Out</a>
+                    </div>
+                </div>
+        <?php
             }
         }
         ?>
