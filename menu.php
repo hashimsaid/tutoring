@@ -108,6 +108,7 @@
                     <div class="dropdown-content">
                         <a href="manageAdmins.php">Manage adminstrators</a><br>
                         <a href="manageTutors.php">Manage tutors</a><br>
+                        <a href="courseapproved.php">Approve Courses</a>
                         <a href="signout.php">Sign out</a><br>
                     </div>
                 </div>
