@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2022 at 01:55 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- Generation Time: Jan 16, 2022 at 07:34 PM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -126,8 +126,7 @@ INSERT INTO `learners` (`learnerID`, `Fname`, `Lname`, `Email`, `Password`, `pro
 
 CREATE TABLE `materials` (
   `courseID` int(11) NOT NULL,
-  `materialPath` text NOT NULL,
-  `approved` tinyint(1) NOT NULL
+  `materialPath` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
