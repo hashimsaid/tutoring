@@ -291,7 +291,7 @@ $results = $conn->query($query);
 <style>
     
     @import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
-@import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
+    @import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
 
 
 .button{
