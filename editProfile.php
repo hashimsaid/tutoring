@@ -35,7 +35,7 @@
     include "filters.php";
     ?>
     <div class="box">
-        <img src="<?php echo $_SESSION['profilePicture']; ?>" alt="profile picture" width="200px"><br>
+        <img src="<?php echo $_SESSION['profilePicture']; ?>" alt="profile picture" width="200px" style="border-radius: 50%;"><br>
         <form action="" method="post" onsubmit="return validateEdit()" name="edit" enctype="multipart/form-data">
             <input type="file" name="profile" value="default.png"><br>
             <input type="text" name="fname" placeholder=" <?php echo $_SESSION['FirstName']; ?>"><br>

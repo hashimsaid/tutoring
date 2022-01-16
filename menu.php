@@ -100,15 +100,14 @@
             echo '<a href="login.php">Log in</a>';
         } else {
             if ($_SESSION['Type'] == 'adminstrator') {
-                echo '<a href="courses.php">My courses</a>';
+                echo '<a href="selectlearner.php">View learners</a>';
+                echo '<a href="searchOrders.php">Search orders</a>';
         ?>
                 <div class="dropdown">
                     <button class="dropbtn"><?php echo $_SESSION['FirstName'] . " " . $_SESSION['LastName']; ?></button>
                     <div class="dropdown-content">
                         <a href="manageAdmins.php">Manage adminstrators</a><br>
                         <a href="manageTutors.php">Manage tutors</a><br>
-                        <a href="selectlearner.php">View learners</a><br>
-                        <a href="searchOrders.php">Search orders</a><br>
                         <a href="signout.php">Sign out</a><br>
                     </div>
                 </div>
