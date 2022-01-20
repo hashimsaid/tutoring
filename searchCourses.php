@@ -3,7 +3,7 @@ session_start();
 include "connectToDb.php";
 
 $sql = "SELECT * FROM courses WHERE courseName LIKE '%" . $_POST['search'] . "%'";
-$result = $conn->query($sql);
+$result = $conn->query($sql) or die(mysqli_error($conn));
 $cols  = $result->num_rows;
 if ($cols < 1) {
     echo '<div class="warning">No results found</div>';
@@ -21,8 +21,11 @@ if ($cols < 1) {
                     <p><?php echo $row["description"] ?></p>
                     <div dir="rtl">
                         <h4><b>Price <?php echo $row["price"] ?></h4>
-                        <button onclick="clicked(this);" class="btn btn-primary" id='<?php echo $row["courseID"] ?>'>Add to cart</button>
-                    </div>
+                        <?php
+                            if (!empty($_SESSION['ID'])) {
+                                echo '<button onclick="clicked(this);" class="btn btn-primary" id=' . $row["courseID"] . '>Add to cart</button>';
+                            }
+                            ?></div>
                     <script>
                         function clicked(button) {
                             button.disabled = true;
