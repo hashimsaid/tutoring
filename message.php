@@ -10,15 +10,23 @@ session_start();
 
 // include DB connection
 include 'connectToDb.php';
-$receiver = $_GET['receiver'];
 include "menu.php";
+$receiver = $_GET['receiver'];
 
 $getReceiver = "SELECT * FROM learners WHERE learnerID = '$receiver'";
-$getReceiverResult = mysqli_query($conn,$getReceiver) or die(mysqli_error($conn));
+
+$getReceiver2 = "SELECT * FROM adminstrators WHERE adminID = '$receiver'";
+
+if($_SESSION['Type']=='learner'){
+	$getReceiverResult = mysqli_query($conn,$getReceiver2) or die(mysqli_error($conn));
+}else{
+	$getReceiverResult = mysqli_query($conn,$getReceiver) or die(mysqli_error($conn));
+}
+
 $getReceiverRow = mysqli_fetch_array($getReceiverResult);
 ?>
+
 <div class="m-5">
-<img src="<?=$getReceiverRow['profilePicture']?>" class="img-circle" width = "40"/>
 <strong><?=$getReceiverRow['Fname']?></strong>
 </div>
 
