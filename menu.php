@@ -1,6 +1,10 @@
 <html>
 
 <head>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
     <link rel="stylesheet" href="css/main.css">
     <style>
         * {
@@ -85,6 +89,16 @@
             top: 0%;
             left: 0%;
         }
+
+        .notification {
+        text-decoration: none;
+        margin: 15px 26px;
+        position: relative;
+        display: inline-block;
+        border-radius: 2px;
+        }
+
+
     </style>
 </head>
 
@@ -117,7 +131,11 @@
             } else if ($_SESSION['Type'] == 'learner') {
                 echo '<a href="courses.php">Buy Courses</a>';
                 echo '<a href="learnerCourses.php">My Courses</a>';
-                echo '<a href="UserCart.php">Cart </a>';
+                ?>
+                <a href="userCart.php" class="position-relative">Cart
+                <span id="cartNotification" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                </a>
+            <?php
                 echo '<a href="messages.php">Chat</a>';
             ?>
                 <div class="dropdown">
@@ -156,5 +174,26 @@
 
     </div>
 </body>
+
+<script type="text/javascript">
+
+	var timer, delay = 100;
+    <?php 
+    if($_SESSION['Type'] == 'learner'){
+        ?>
+	timer = setInterval(function(){
+		$.ajax({
+		type: "GET",
+		url: "cartNotify.php?id=<?php echo $_SESSION["ID"]; ?>",
+		dataType: "html",
+		success: function(response){
+			$("#cartNotification").html(response); 
+		}
+	});
+	},delay);
+<?php }
+    ?>
+
+</script>
 
 </html>
