@@ -55,8 +55,8 @@ if (isset($_POST['submit'])) {
     $name = basename($_FILES['path']['name']);
     if ($_FILES['path']['size'] == 0 && $_FILES['path']['error'] == 0) {
     } else {
-        $sql = "INSERT INTO courses (courseName,price,description,picture,approved) 
-        VALUES ('$cName','$price','$desc','$target_file','$notapproved')";
+        $sql = "INSERT INTO courses (courseName,price,description,picture,approved , tutorID) 
+        VALUES ('$cName','$price','$desc','$target_file','$notapproved' , '$_SESSION[ID]')";
 
         if (mysqli_query($conn, $sql)) {
             echo "success";
