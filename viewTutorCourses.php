@@ -51,19 +51,19 @@ $results = $conn->query($query);
 </body>
 
 <script>
-                            function clicked(button) {
-                                button.disabled = true;
-                                var xhttp = new XMLHttpRequest();
-                                xhttp.onreadystatechange = function() {
-                                    if (this.status == 200) {
-                                        button.innerHTML = "sent";
-                                    }
-                                };
-                                var cID = button.id;
+    function clicked(button) {
+         button.disabled = true;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.status == 200) {
+            button.innerHTML = "sent";
+         }
+        };
+        var cID = button.id;
 
-                                xhttp.open("GET", "addToCart.php?courseID=" + cID, true);
-                                xhttp.send();
-                            }
+        xhttp.open("GET", "addToCart.php?courseID=" + cID, true);
+        xhttp.send();
+     }
 </script>
 
 </html>
