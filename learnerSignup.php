@@ -81,7 +81,7 @@
                     $sql = "insert into learners(learnerID,Fname,Lname,Email,Password,Type,profilePicture) values('" . $id . "','" . $_POST['fname'] . "','" . $_POST['lname'] . "','"  . $_POST['email'] . "','" . $hashed_password . "','learner','pictures/profile/default.png')";
                     $result = mysqli_query($conn, $sql);
                     if ($result) {
-                        header("Location:home.php");
+                        echo "<script>window.location.href='home.php';</script>";
                     } else {
                         echo "<div class='warning'><br>Error inserting into database!</div>";
                     }

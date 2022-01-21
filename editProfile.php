@@ -67,7 +67,7 @@
                     $_SESSION["FirstName"] = $_POST['fname'];
                     $_SESSION["LastName"] =  $_POST['lname'];
                     $_SESSION["profilePicture"] = $target_file;
-                    header("Location:home.php");
+                    echo "<script>window.location.href='home.php';</script>";
                 }
             } else {
                 echo "<div class='warning'><br>Please don't use special characters in names!</div>";

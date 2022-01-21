@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2022 at 07:10 PM
+-- Generation Time: Jan 21, 2022 at 10:05 PM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- PHP Version: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -75,9 +75,7 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`courseID`, `learnerID`) VALUES
-(3, 2),
-(3, 61),
-(4, 61);
+(3, 2);
 
 -- --------------------------------------------------------
 
@@ -126,7 +124,8 @@ CREATE TABLE `learners` (
 
 INSERT INTO `learners` (`learnerID`, `Fname`, `Lname`, `Email`, `Password`, `profilePicture`, `Type`) VALUES
 ('61eabd8ea6706', 'shihab', 'learner', 'shihab.learner@mail.com', '$2y$10$sI30TgE0wh.BwD0/sSPFjOQpiM8Od7mYKM4pVra.WE7bbiR2cTukq', 'pictures/profile/default.png', 'learner'),
-('61eac18477237', 'fady', 'learner', 'fady@gmail.com', '$2y$10$6cgcsNhmsXfHYxKYg.H2vejo1pB70rKDCAMPdu.Pex4liX7IAXDT.', 'pictures/profile/default.png', 'learner');
+('61eac18477237', 'fady', 'learner', 'fady@gmail.com', '$2y$10$6cgcsNhmsXfHYxKYg.H2vejo1pB70rKDCAMPdu.Pex4liX7IAXDT.', 'pictures/profile/default.png', 'learner'),
+('61eb1f9760bb7', 'learnertest', 'learnertest', 'learnertest@gmail.com', '$2y$10$A0WGN7y0LRst4bW5x85J4evxhN1D4NbNzi.IH9EkFA1pvvLQ6QRbW', 'pictures/profile/default.png', 'learner');
 
 -- --------------------------------------------------------
 
@@ -190,7 +189,11 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`orderID`, `courseID`, `learnerID`, `total`) VALUES
 (1948361932, 3, '61eac18477237', 5000),
-(155629798, 4, '61eac18477237', 100000);
+(155629798, 4, '61eac18477237', 100000),
+(841011446, 3, '61eac18477237', 105000),
+(841011446, 4, '61eac18477237', 105000),
+(1339974304, 3, '61eb1f9760bb7', 105000),
+(1339974304, 4, '61eb1f9760bb7', 105000);
 
 -- --------------------------------------------------------
 
@@ -200,7 +203,7 @@ INSERT INTO `orders` (`orderID`, `courseID`, `learnerID`, `total`) VALUES
 
 CREATE TABLE `selectedcourses` (
   `courseID` int(11) NOT NULL,
-  `learnerID` int(11) NOT NULL,
+  `learnerID` varchar(255) NOT NULL,
   `rating` int(11) DEFAULT NULL,
   `review` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -210,8 +213,8 @@ CREATE TABLE `selectedcourses` (
 --
 
 INSERT INTO `selectedcourses` (`courseID`, `learnerID`, `rating`, `review`) VALUES
-(3, 61, NULL, NULL),
-(4, 61, NULL, NULL);
+(3, '61eb1f9760bb7', NULL, NULL),
+(4, '61eb1f9760bb7', NULL, NULL);
 
 -- --------------------------------------------------------
 

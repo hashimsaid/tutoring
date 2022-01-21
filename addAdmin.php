@@ -79,7 +79,7 @@
                     $sql = "insert into adminstrators(adminID,Fname,Lname,Email,Password,Type) values('" . $id . "','" . $_POST['fname'] . "','" . $_POST['lname'] . "','"  . $_POST['email'] . "','" . $hashed_password . "','adminstrator')";
                     $result = mysqli_query($conn, $sql);
                     if ($result) {
-                        header("Location:manageAdmins.php");
+                        echo "<script>window.location.href='manageAdmins.php';</script>";
                     } else {
                         echo "<div class='warning'><br>Error inserting into database!</div>";
                     }

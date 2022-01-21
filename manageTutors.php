@@ -7,6 +7,25 @@
             background-image: url("pictures/website/backgroundPattern.png");
         }
 
+        .box {
+            box-shadow: 10px 10px rgba(0, 0, 0, 0.5);
+            margin: auto;
+            margin-top: 5%;
+            margin-bottom: 5%;
+            padding: 50px;
+            top: 10%;
+            background-color: white;
+            width: 40%;
+            text-align: center;
+
+        }
+
+        .warning {
+            margin-top: 20px;
+            color: red;
+            font-weight: bold;
+        }
+
         .link {
             margin: 50px;
             text-decoration: none;
@@ -72,10 +91,11 @@
         }
         echo "</table>";
     } else {
-        echo "0 results";
+        echo "
+        <div class='box'><div class='warning'>0 results</div>";
     }
     ?>
-    <a href="addTutor.php" class='link'>Add tutor</a>
+    <a href='addTutor.php' class='link'>Add tutor</a></div>
 
 </body>
 

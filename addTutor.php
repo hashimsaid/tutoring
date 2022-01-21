@@ -78,7 +78,7 @@
                     $sql = "insert into tutors(Fname,Lname,Email,Password,Type) values('" . $_POST['fname'] . "','" . $_POST['lname'] . "','"  . $_POST['email'] . "','" . $hashed_password . "','tutor')";
                     $result = mysqli_query($conn, $sql);
                     if ($result) {
-                        header("Location:manageTutors.php");
+                        echo "<script>window.location.href='manageTutors.php';</script>";
                     } else {
                         echo "<div class='warning'><br>Error inserting into database!</div>";
                     }
