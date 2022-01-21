@@ -31,12 +31,14 @@ $results2 = $conn->query($query2);
 
     <div class="mx-auto" style="width: 100%;">
         <?php while ($row = $results->fetch_array(MYSQLI_ASSOC)) { ?>
-            <div class="p-5 d-flex " style=" background-color:DarkSlateGrey;">
-                <img src="pictures/courses/<?php echo $row["picture"] ?>" style="width:30%;">
-                <div class="p-3">
-                    <h1 style="color:white;"><b><?php echo $row["courseName"] ?> Course</b> </h1>
-                    <p style="color:white; font-size:1.2em"> <?php echo $row["description"] ?></p>
-                </div>
+            <div class="p-5 d-flex " style=" background-color:#456666; opacity:87%;">
+               
+                    <img src="pictures/courses/<?php echo $row["picture"] ?>" style="width:30%;">
+                    <div class="p-3">
+                        <h1 style="color:white;"><b><?php echo $row["courseName"] ?> Course</b> </h1>
+                        <p style="color:white; font-size:1.2em"> <?php echo $row["description"] ?></p>
+                    </div>
+                
             </div>
             <br><br><br>
             <?php } ?>
