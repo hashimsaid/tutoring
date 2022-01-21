@@ -58,7 +58,7 @@
                     $_SESSION["Password"] = $row["Password"];
                     $_SESSION["Type"] = $row["Type"];
                     $_SESSION["profilePicture"] = $row["profilePicture"];
-                    header("Location:home.php");
+                    echo "<script>window.location.href='home.php';</script>";
                 } else {
                     echo "<div class='warning'><br>Invalid email or password!</div>";
                 }
@@ -73,7 +73,7 @@
                         $_SESSION["Email"] = $row["Email"];
                         $_SESSION["Password"] = $row["Password"];
                         $_SESSION["Type"] = $row["Type"];
-                        header("Location:home.php");
+                        echo "<script>window.location.href='home.php';</script>";
                     } else {
                         echo "<div class='warning'><br>Invalid email or password!</div>";
                     }
@@ -88,7 +88,7 @@
                             $_SESSION["Email"] = $row["Email"];
                             $_SESSION["Password"] = $row["Password"];
                             $_SESSION["Type"] = $row["Type"];
-                            header("Location:home.php");
+                            echo "<script>window.location.href='home.php';</script>";
                         } else {
                             echo "<div class='warning'><br>Invalid email or password!</div>";
                         }
@@ -102,7 +102,7 @@
                             $_SESSION["Email"] = $row["Email"];
                             $_SESSION["Password"] = $row["Password"];
                             $_SESSION["Type"] = $row["Type"];
-                            header("Location:home.php");
+                            echo "<script>window.location.href='home.php';</script>";
                         } else {
                             echo "<div class='warning'><br>Invalid email or password!</div>";
                         }
