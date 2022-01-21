@@ -30,7 +30,7 @@ if ($unique) {
 
   while ($row = $data->fetch_array(MYSQLI_ASSOC)) {
 
-    $sql = "INSERT INTO orders (orderID,courseID,learnerID) VALUES ('" . $random . "','" . $row["courseID"] . "','" . $learnerID . "' )";
+    $sql = "INSERT INTO orders (orderID,courseID,learnerID,total) VALUES ('" . $random . "','" . $row["courseID"] . "','" . $learnerID . "' )";
 
     if ($conn->query($sql) === TRUE) {
     } else {

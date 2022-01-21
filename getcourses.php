@@ -59,9 +59,9 @@ if (isset($_POST['submit'])) {
         VALUES ('$cName','$price','$desc','$target_file','$notapproved')";
 
         if (mysqli_query($conn, $sql)) {
-            //echo "success";
+            echo "success";
         } else {
-           // echo "fail";
+            die(mysqli_error($conn));
         }
     }
 
