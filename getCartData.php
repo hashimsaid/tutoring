@@ -21,7 +21,6 @@ $cols = $results->num_rows;
 if ($cols < 1) {
 ?>
     <script>
-
     </script>
     <div class="mx-auto m-4" style="width: 75%;">
         <img src="pictures/utilities/emptycart.png" class="w-100">
@@ -65,13 +64,11 @@ if ($cols < 1) {
                     }
                 </script>
             </div>
-
         </div>
         </div>
 
     <?php
     } ?>
-
 
     <div class="d-flex flex-row-reverse">
         <div>
@@ -87,10 +84,9 @@ if ($cols < 1) {
                 if (this.status == 200) {
                     button.innerHTML = this.responseText;
                 }
-
             };
-            var cID = 0;
-            xhttp.open("GET", "placeOrder.php?courseID=" + cID);
+            var total = <?php echo $total; ?>;
+            xhttp.open("GET", "placeOrder.php?total=" + total);
             xhttp.send();
         }
     </script>
@@ -100,7 +96,5 @@ if ($cols < 1) {
             border-radius: 15px;
         }
     </style>
-
-
 <?php
 } ?>

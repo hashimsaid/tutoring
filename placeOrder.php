@@ -24,13 +24,14 @@ while (!$unique) {
     $unique = true;
   }
 }
+
 if ($unique) {
   $query = "SELECT * FROM cart WHERE learnerID='" . $learnerID . "' ";
   $data = $conn->query($query);
 
   while ($row = $data->fetch_array(MYSQLI_ASSOC)) {
 
-    $sql = "INSERT INTO orders (orderID,courseID,learnerID) VALUES ('" . $random . "','" . $row["courseID"] . "','" . $learnerID . "' )";
+    $sql = "INSERT INTO orders (orderID,courseID,learnerID,total) VALUES ('" . $random . "','" . $row["courseID"] . "','" . $learnerID . "' , '".$_GET["total"]."' )";
 
     if ($conn->query($sql) === TRUE) {
     } else {
