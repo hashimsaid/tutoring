@@ -16,7 +16,7 @@
             top: 10%;
             background-color: white;
             width: 600px;
-            height: 400px;
+            height: 600px;
         }
 
         .title {
@@ -24,7 +24,7 @@
         }
 
         hr {
-            width: 25%;
+            width: 100%;
             margin: auto;
         }
 
