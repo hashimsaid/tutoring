@@ -31,29 +31,39 @@ $results2 = $conn->query($query2);
 
     <div class="mx-auto" style="width: 100%;">
         <?php while ($row = $results->fetch_array(MYSQLI_ASSOC)) { ?>
-            <div class="p-5 d-flex " style=" background-color:DarkSlateGrey;">
-                <img src="pictures/courses/<?php echo $row["picture"] ?>" style="width:30%;">
-                <div class="p-3">
-                    <h1 style="color:white;"><b><?php echo $row["courseName"] ?> Course</b> </h1>
-                    <p style="color:white; font-size:1.2em"> <?php echo $row["description"] ?></p>
-                </div>
+            <div class="p-5 d-flex " style=" background-color:#456666; opacity:87%;">
+               
+                    <img src="pictures/courses/<?php echo $row["picture"] ?>" style="width:30%;">
+                    <div class="p-3">
+                        <h1 style="color:white;"><b><?php echo $row["courseName"] ?> Course</b> </h1>
+                        <p style="color:white; font-size:1.2em"> <?php echo $row["description"] ?></p>
+                    </div>
+                
             </div>
             <br><br><br>
             <?php } ?>
             <div class="p-5 m-5" style="width:60%; background-color: white; box-shadow: 10px 10px rgba(0, 0, 0, 0.5);">
-        
                 <h1><b>Course Content</b> </h1>
-            
-<?php while ($row = $results2->fetch_array(MYSQLI_ASSOC)) { ?>
-            <div class="p-2 d-flex " >
-            <a class = "links" href="<?php echo $row["materialPath"]; $materialname =substr($row["materialPath"],10)  ?>"><?php echo $materialname;?></a>
-
         
+        <?php while ($row = $results2->fetch_array(MYSQLI_ASSOC)) { ?>
+            <div class="p-2d-flex ">
+            <?php
+            $materialname =substr($row["materialPath"],10);
+            $path = Substr($materialname , strlen($materialname)-3);
+            if($path=='pdf'){
+            ?>
+             <img src="pictures/icons8-pdf-40.png" width="45px" height="45px" style="margin-right: 10px;">
+            <?php }else if($path=='jpg' || $path=='jpeg' || $path=='png'){?>
+             <img src="pictures/icons8-image-50.png" width="45px" height="45px" style="margin-right: 10px;">
+             <?php } ?>
+            <a class = "links" href="<?php echo $row["materialPath"];?>"> <?php echo $materialname;?> </a>
+
             </div>
 
         <?php } ?>
 
-</div>
+   </div>
+
         <div class="p-5" >
             <?php
             $query = "SELECT * FROM courses WHERE courseID='" . $_GET["courseID"] . "' ";
@@ -498,19 +508,17 @@ $results2 = $conn->query($query2);
         }
     }
     .links{
-        
-  color: black;
+     color: black;
+     text-decoration: none;
     }
 
 
     .links:hover{
         color:green;
-
     }
 
     .links:visited{
         color:purple;
-
     }
 
 </style>
