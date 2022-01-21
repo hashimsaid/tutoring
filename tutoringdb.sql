@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2022 at 04:08 PM
+-- Generation Time: Jan 21, 2022 at 07:10 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -70,6 +70,15 @@ CREATE TABLE `cart` (
   `learnerID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`courseID`, `learnerID`) VALUES
+(3, 2),
+(3, 61),
+(4, 61);
+
 -- --------------------------------------------------------
 
 --
@@ -83,16 +92,17 @@ CREATE TABLE `courses` (
   `price` int(11) NOT NULL,
   `description` text NOT NULL,
   `picture` text NOT NULL,
-  `approved` tinyint(1) NOT NULL
+  `approved` tinyint(1) NOT NULL,
+  `tutorID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `courses`
 --
 
-INSERT INTO `courses` (`courseID`, `courseName`, `averageRating`, `price`, `description`, `picture`, `approved`) VALUES
-(1, 'Data Structures', '0', 5000, 'ay haga', 'Ayya.gif', 1),
-(2, 'Data Structures2', '0', 10000, 'ay haga 2', 'assassins_creed_syndicate_hand_knife_stick_102982_1920x1080.jpg', 1);
+INSERT INTO `courses` (`courseID`, `courseName`, `averageRating`, `price`, `description`, `picture`, `approved`, `tutorID`) VALUES
+(3, 'Data Structures', '0', 5000, 'ay haga', 'assassins_creed_iv_black_flag_edward_kenway_weapons_crows_battle_97582_1920x1080.jpg', 1, 2),
+(4, 'Data Structures 2', '0', 100000, 'ay haga 2', 'azwraith_phantom_lancer_dota_2_art_94278_1920x1080.jpg', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -129,6 +139,13 @@ CREATE TABLE `materials` (
   `materialPath` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `materials`
+--
+
+INSERT INTO `materials` (`courseID`, `materialPath`) VALUES
+(4, 'materials/Sheet 4.2 Networks.pdf');
+
 -- --------------------------------------------------------
 
 --
@@ -151,7 +168,8 @@ INSERT INTO `messages` (`id`, `sent_by`, `received_by`, `message`, `createdAt`) 
 (120, '61eaba8c4aac3', '61eabd8ea6706', 'hi', '2022-01-21 03:21:10pm'),
 (121, '61eaba8c4aac3', '61eac18477237', 'hello', '2022-01-21 03:23:22pm'),
 (122, '61eac18477237', '61eaba8c4aac3', 'hi', '2022-01-21 03:23:37pm'),
-(123, '61eaba8c4aac3', '61eac18477237', 'alo', '2022-01-21 03:47:35pm');
+(123, '61eaba8c4aac3', '61eac18477237', 'alo', '2022-01-21 03:47:35pm'),
+(124, '61eac18477237', '61eaba8c4aac3', 'hi', '2022-01-21 06:20:50pm');
 
 -- --------------------------------------------------------
 
@@ -171,8 +189,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`orderID`, `courseID`, `learnerID`, `total`) VALUES
-(1892958798, 0, '61eac18477237', 0),
-(1892958798, 1, '61eac18477237', 0);
+(1948361932, 3, '61eac18477237', 5000),
+(155629798, 4, '61eac18477237', 100000);
 
 -- --------------------------------------------------------
 
@@ -192,7 +210,8 @@ CREATE TABLE `selectedcourses` (
 --
 
 INSERT INTO `selectedcourses` (`courseID`, `learnerID`, `rating`, `review`) VALUES
-(2, 61, NULL, NULL);
+(3, 61, NULL, NULL),
+(4, 61, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -281,13 +300,13 @@ ALTER TABLE `auditors`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `courseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `courseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 
 --
 -- AUTO_INCREMENT for table `tutors`
