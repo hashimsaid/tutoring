@@ -33,14 +33,20 @@
  
 </style>
 <?php
-
+session_start();
 include 'connectToDb.php';
 
 $output = '';
 
-$sql = "SELECT * FROM learners WHERE Fname LIKE '%" . $_POST['search'] . "%'";
+$sql = "SELECT * FROM adminstrators WHERE Fname LIKE '%" . $_POST['search'] . "%'";
+$sql2 = "SELECT * FROM learners WHERE Fname LIKE '%" . $_POST['search'] . "%'";
 
-$result = mysqli_query($conn, $sql);
+if($_SESSION['Type']=='learner'){
+    $result = mysqli_query($conn, $sql);
+}else{
+    $result = mysqli_query($conn, $sql2);
+}
+
 
 if (mysqli_num_rows($result) > 0) {
 

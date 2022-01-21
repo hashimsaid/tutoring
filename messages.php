@@ -44,7 +44,7 @@ include "menu.php";
 <form>
 
 	<br>
-	<div class="p-4" style="width: 50%;">
+	<div class="p-4" style="width: 60%;">
 		<input type="text" class="form-control" name="Name_Search" id="Name_Search" placeholder="Enter The Name You Want To Search">
 		<div id="result"></div>
 		<div class="p-2">
@@ -54,12 +54,18 @@ include "menu.php";
 		if (mysqli_num_rows($lastMessageResult) > 0) {
 			while ($lastMessageRow = mysqli_fetch_array($lastMessageResult)) {
 				$sent_by = $lastMessageRow['sent_by'];
+
 				$getSender = "SELECT * FROM learners WHERE learnerID = '$sent_by'";
-				$getSenderResult = mysqli_query($conn, $getSender) or die(mysqli_error($conn));
+				$getSender2 = "SELECT * FROM adminstrators WHERE adminID = '$sent_by'";
+
+				if($_SESSION['Type']=='learner'){
+					$getSenderResult = mysqli_query($conn, $getSender2) or die(mysqli_error($conn));
+				}else{
+					$getSenderResult = mysqli_query($conn, $getSender) or die(mysqli_error($conn));
+				}
 				$getSenderRow = mysqli_fetch_array($getSenderResult);
 		?>
 				<div class="box" >
-					<img src="<?= $getSenderRow['profilePicture'] ?>" class="img-circle" width="40" style="border-radius: 50%;" />
 					<?= $getSenderRow['Fname']; ?>
 					<a id="send" href="./message.php?receiver=<?= $sent_by ?>">Send message</a>
 				</div><br>

@@ -102,6 +102,7 @@
             if ($_SESSION['Type'] == 'adminstrator') {
                 echo '<a href="selectlearner.php">View learners</a>';
                 echo '<a href="searchOrders.php">Search orders</a>';
+                echo '<a href="messages.php">Chat</a>';
         ?>
                 <div class="dropdown">
                     <button class="dropbtn"><?php echo $_SESSION['FirstName'] . " " . $_SESSION['LastName']; ?></button>
