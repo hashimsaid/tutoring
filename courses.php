@@ -44,7 +44,21 @@ $results = $conn->query($query);
                             <h4><b>Price <?php echo $row["price"] ?></h4>
                             <?php
                             if (!empty($_SESSION['ID'])) {
+                                $query = "SELECT * from cart where courseID='$row[courseID]' AND learnerID='$_SESSION[ID]' ";
+                                $result = mysqli_query($conn,$query);
+
+                                $query2 = "SELECT * from selectedCourses where courseID='$row[courseID]' AND learnerID='$_SESSION[ID]' ";
+                                $result2 = mysqli_query($conn,$query2);
+
+                                if(mysqli_num_rows($result) > 0)
+                                {
+                                    echo '<button class="btn btn-primary" disabled>Already in cart</button>';
+                                }else if(mysqli_num_rows($result2) > 0){
+                                    echo '<button class="btn btn-primary" disabled>Already Enrolled</button>';
+                                }
+                                else{
                                 echo '<button onclick="clicked(this);" class="btn btn-primary" id=' . $row["courseID"] . '>Add to cart</button>';
+                                }
                             }
                             ?>
 
@@ -55,7 +69,7 @@ $results = $conn->query($query);
                                 var xhttp = new XMLHttpRequest();
                                 xhttp.onreadystatechange = function() {
                                     if (this.status == 200) {
-                                        button.innerHTML = "Added";
+                                        button.innerHTML = this.responseText;
                                     }
                                 };
                                 var cID = button.id;
