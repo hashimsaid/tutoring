@@ -22,6 +22,9 @@ include "menu.php";
 $conn = new mysqli($servername, $username, $password, $dbname);
 $query = "SELECT * FROM courses WHERE courseID='" . $_GET["courseID"] . "' ";
 $results = $conn->query($query);
+$query2= $query = "SELECT * FROM materials WHERE courseID='" . $_GET["courseID"] . "' ";
+$results2 = $conn->query($query2);
+
 ?>
 
 <body>
@@ -36,12 +39,21 @@ $results = $conn->query($query);
                 </div>
             </div>
             <br><br><br>
-            <div class=" p-5">
+            <?php } ?>
+            <div class="p-5 m-5" style="width:60%; background-color: white; box-shadow: 10px 10px rgba(0, 0, 0, 0.5);">
+        
                 <h1><b>Course Content</b> </h1>
+            
+<?php while ($row = $results2->fetch_array(MYSQLI_ASSOC)) { ?>
+            <div class="p-2 d-flex " >
+            <a class = "links" href="<?php echo $row["materialPath"]; $materialname =substr($row["materialPath"],10)  ?>"><?php echo $materialname;?></a>
+
+        
             </div>
+
         <?php } ?>
 
-
+</div>
         <div class="p-5" >
             <?php
             $query = "SELECT * FROM courses WHERE courseID='" . $_GET["courseID"] . "' ";
@@ -485,6 +497,22 @@ $results = $conn->query($query);
             opacity: 0;
         }
     }
+    .links{
+        
+  color: black;
+    }
+
+
+    .links:hover{
+        color:green;
+
+    }
+
+    .links:visited{
+        color:purple;
+
+    }
+
 </style>
 
 </html>
