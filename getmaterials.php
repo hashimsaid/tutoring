@@ -46,7 +46,7 @@ if (isset($_POST['upload'])) {
 
   move_uploaded_file($tmp_name, "$target_dir/$name");
 }
-
+//test
 ?>
 
 <form action="" method="post" name="edit" enctype="multipart/form-data" class="box">
