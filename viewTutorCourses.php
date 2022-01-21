@@ -1,4 +1,5 @@
 <html>
+
 <head>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,10 +33,10 @@ $results = $conn->query($query);
 <body>
 
   <br><br><br>
-  <div class="card-columns col justify-content-center mx-auto" style="width:90%;">
+  <div class="card-columns col justify-content-center mx-auto" style="width:100%;">
     <?php while ($row = $results->fetch_array(MYSQLI_ASSOC)) { ?>
 
-      <div class="card itemCard"  style="width:500px; height:400px; box-shadow: 10px 10px rgba(0, 0, 0, 0.5);">
+      <div class="card itemCard"  style=" height:400px; box-shadow: 10px 10px rgba(0, 0, 0, 0.5);">
         <div class="card-body text-center">
           <img class="card-img-top" src="pictures/courses/<?php echo $row["picture"] ?>">
           <h4 class="pt-2"><b><?php echo $row["courseName"] ?></b></h4>
@@ -63,7 +64,7 @@ $results = $conn->query($query);
 
         xhttp.open("GET", "addToCart.php?courseID=" + cID, true);
         xhttp.send();
-     }
+    }
 </script>
 
 </html>
