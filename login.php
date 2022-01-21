@@ -43,11 +43,27 @@
             <input type="submit" name="login" value="Log in"><br>
             Don't have an account? <br> <a href="learnerSignup.php">Sign up!</a>
         </form>
-
-        <?php
-        if (isset($_POST['login'])) {
-            if (filterText($_POST['password']) && filterEmail($_POST['email'])) {
-                $sql = "Select * from learners where Email ='" . $_POST["email"] . "'";
+    
+    <?php
+    if (isset($_POST['login'])) {
+        if (filterText($_POST['password']) && filterEmail($_POST['email'])) {
+            $sql = "Select * from learners where Email ='" . $_POST["email"] . "'";
+            $result = mysqli_query($conn, $sql);
+            if ($row = mysqli_fetch_array($result)) {
+                if (password_verify($_POST['password'], $row['Password'])) {
+                    $_SESSION["ID"] = $row[0];
+                    $_SESSION["FirstName"] = $row["Fname"];
+                    $_SESSION["LastName"] = $row["Lname"];
+                    $_SESSION["Email"] = $row["Email"];
+                    $_SESSION["Password"] = $row["Password"];
+                    $_SESSION["Type"] = $row["Type"];
+                    $_SESSION["profilePicture"] = $row["profilePicture"];
+                    header("Location:home.php");
+                } else {
+                    echo "<div class='warning'><br>Invalid email or password!</div>";
+                }
+            } else {
+                $sql = "Select * from adminstrators where Email ='" . $_POST["email"] . "'";
                 $result = mysqli_query($conn, $sql);
                 if ($row = mysqli_fetch_array($result)) {
                     if (password_verify($_POST['password'], $row['Password'])) {
@@ -57,13 +73,12 @@
                         $_SESSION["Email"] = $row["Email"];
                         $_SESSION["Password"] = $row["Password"];
                         $_SESSION["Type"] = $row["Type"];
-                        $_SESSION["profilePicture"] = $row["profilePicture"];
                         header("Location:home.php");
                     } else {
                         echo "<div class='warning'><br>Invalid email or password!</div>";
                     }
                 } else {
-                    $sql = "Select * from adminstrators where Email ='" . $_POST["email"] . "'";
+                    $sql = "Select * from tutors where Email ='" . $_POST["email"] . "'";
                     $result = mysqli_query($conn, $sql);
                     if ($row = mysqli_fetch_array($result)) {
                         if (password_verify($_POST['password'], $row['Password'])) {
@@ -78,42 +93,27 @@
                             echo "<div class='warning'><br>Invalid email or password!</div>";
                         }
                     } else {
-                        $sql = "Select * from tutors where Email ='" . $_POST["email"] . "'";
+                        $sql = "Select * from auditors where Email ='" . $_POST["email"] . "' and Password='" . $_POST["password"] . "'";
                         $result = mysqli_query($conn, $sql);
                         if ($row = mysqli_fetch_array($result)) {
-                            if (password_verify($_POST['password'], $row['Password'])) {
-                                $_SESSION["ID"] = $row[0];
-                                $_SESSION["FirstName"] = $row["Fname"];
-                                $_SESSION["LastName"] = $row["Lname"];
-                                $_SESSION["Email"] = $row["Email"];
-                                $_SESSION["Password"] = $row["Password"];
-                                $_SESSION["Type"] = $row["Type"];
-                                header("Location:home.php");
-                            } else {
-                                echo "<div class='warning'><br>Invalid email or password!</div>";
-                            }
+                            $_SESSION["ID"] = $row[0];
+                            $_SESSION["FirstName"] = $row["Fname"];
+                            $_SESSION["LastName"] = $row["Lname"];
+                            $_SESSION["Email"] = $row["Email"];
+                            $_SESSION["Password"] = $row["Password"];
+                            $_SESSION["Type"] = $row["Type"];
+                            header("Location:home.php");
                         } else {
-                            $sql = "Select * from auditors where Email ='" . $_POST['email'] . "' and Password='" . $_POST['password'] . "'";
-                            $result = mysqli_query($conn, $sql);
-                            if ($row = mysqli_fetch_array($result)) {
-                                $_SESSION["ID"] = $row[0];
-                                $_SESSION["FirstName"] = $row["Fname"];
-                                $_SESSION["LastName"] = $row["Lname"];
-                                $_SESSION["Email"] = $row["Email"];
-                                $_SESSION["Password"] = $row["Password"];
-                                $_SESSION["Type"] = $row["Type"];
-                                header("Location:home.php");
-                            } else {
-                                echo "<div class='warning'><br>Invalid email or password!</div>";
-                            }
+                            echo "<div class='warning'><br>Invalid email or password!</div>";
                         }
                     }
                 }
-            } else {
-                echo "<div class='warning'><br>Please make sure the email is valid and don't use special characters in the password!</div>";
             }
+        } else {
+            echo "<div class='warning'><br>Please make sure the email is valid and don't use special characters in the password!</div>";
         }
-        ?>
+    }
+    ?>
     </div>
     <script>
         function validateLogin() {

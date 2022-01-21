@@ -43,7 +43,7 @@ $receiver = $_GET['receiver'];
 																			}
 
 
-																			?>"><?= $getMessageRow['message'] ?></p>
+																			?>"><?= $getMessageRow['message']?></p>
 						</td>
 					</div>
 				</tr>
