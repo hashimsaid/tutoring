@@ -67,7 +67,7 @@ if(isset($_POST['submit'])) {
 	$sent_by = $_POST['sent_by'];
 	$receiver = $_POST['received_by'];
 	$message = $_POST['message'];
-	$sendMessage = "INSERT INTO messages(sent_by,received_by,message,createdAt) VALUES('$sent_by','$receiver','$message','$createdAt')";
+	$sendMessage = "INSERT INTO messages(sent_by,received_by,message,createdAt,seen) VALUES('$sent_by','$receiver','$message','$createdAt',0)";
 	mysqli_query($conn,$sendMessage) or die(mysqli_error($conn));
 }
 ?>
