@@ -49,8 +49,8 @@ include "menu.php";
 		<div id="result"></div>
 		<div class="p-2">
 	<?php
-		$lastMessage = "SELECT DISTINCT sent_by FROM messages WHERE received_by = " . $_SESSION['ID'];
-		$lastMessageResult = mysqli_query($conn, $lastMessage) or die(mysqli_error($conn));
+		$lastMessage = "SELECT DISTINCT sent_by FROM messages WHERE received_by = '$_SESSION[ID]'";
+		$lastMessageResult = mysqli_query($conn, $lastMessage);
 		if (mysqli_num_rows($lastMessageResult) > 0) {
 			while ($lastMessageRow = mysqli_fetch_array($lastMessageResult)) {
 				$sent_by = $lastMessageRow['sent_by'];

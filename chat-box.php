@@ -15,8 +15,8 @@ $receiver = $_GET['receiver'];
 
 	<?php
 
-	$getMessage = "SELECT * FROM messages WHERE sent_by = '$receiver' AND received_by = ".$_SESSION['ID']."
-	 OR sent_by =".$_SESSION['ID']." AND received_by ='$receiver' ORDER BY createdAt asc";
+	$getMessage = "SELECT * FROM messages WHERE sent_by = '$receiver' AND received_by = '$_SESSION[ID]'
+	 OR sent_by ='$_SESSION[ID]' AND received_by ='$receiver' ORDER BY createdAt asc";
 
 	$getMessageResult = mysqli_query($conn,$getMessage) or die(mysqli_error($conn));
 	if(mysqli_num_rows($getMessageResult) > 0) {
