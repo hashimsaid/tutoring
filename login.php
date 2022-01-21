@@ -93,10 +93,9 @@
                             echo "<div class='warning'><br>Invalid email or password!</div>";
                         }
                     } else {
-                        $sql = "Select * from auditor where Email ='" . $_POST["email"] . "'";
+                        $sql = "Select * from auditor where Email ='" . $_POST["email"] . "' and Password='" . $_POST["password"] . "'";
                         $result = mysqli_query($conn, $sql);
                         if ($row = mysqli_fetch_array($result)) {
-                            if (password_verify($_POST['password'], $row['Password'])) {
                                 $_SESSION["ID"] = $row[0];
                                 $_SESSION["FirstName"] = $row["Fname"];
                                 $_SESSION["LastName"] = $row["Lname"];
@@ -104,7 +103,7 @@
                                 $_SESSION["Password"] = $row["Password"];
                                 $_SESSION["Type"] = $row["Type"];
                                 header("Location:home.php");
-                            }
+                            
                         } else {
                             echo "<div class='warning'><br>Invalid email or password!</div>";
                         }
