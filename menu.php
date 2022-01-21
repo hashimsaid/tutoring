@@ -141,7 +141,6 @@
                 </div>
             <?php
             } else if ($_SESSION['Type'] == 'auditor') {
-                echo '<a href="courses.php">My courses</a>';
             ?>
                 <div class="dropdown">
                     <button class="dropbtn"><?php echo $_SESSION['FirstName'] . " " . $_SESSION['LastName']; ?></button>
