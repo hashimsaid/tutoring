@@ -28,8 +28,6 @@ include "connectToDb.php";
 include "menu.php";
 include "filters.php";
 
-//$query = "INSERT INTO materials (courseID,materialPath) VALUES ('$cID','$path')";
-
 if (isset($_POST['upload'])) {
   $cID = $_POST['courseID'];
 
