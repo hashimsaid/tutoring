@@ -31,7 +31,7 @@ include "menu.php";
                    
                     <textarea class="form-control" id="reviewText"></textarea>
                     <div class=" d-flex flex-row-reverse">
-                        <button onclick="clicked(this);" class="button rounded" id='<?php echo $_GET["courseID"] ?>'>submit review</button>
+                        <button onclick="clicked(this);" class="button rounded" id='<?php echo $_GET["courseID"]?>'>submit review</button>
                     </div>
 
         </form> 

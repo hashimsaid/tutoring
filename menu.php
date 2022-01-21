@@ -131,6 +131,7 @@
             } else if ($_SESSION['Type'] == 'tutor') {
                 echo '<a href="getmaterials.php">Upload Material</a>';
                 echo '<a href="getcourses.php">Upload Course</a>';
+                echo '<a href="viewTutorCourses.php">My Courses</a>';
             ?>
                 <div class="dropdown">
                     <button class="dropbtn"><?php echo $_SESSION['FirstName'] . " " . $_SESSION['LastName']; ?></button>
