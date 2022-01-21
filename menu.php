@@ -130,11 +130,12 @@
             <?php
             } else if ($_SESSION['Type'] == 'learner') {
                 echo '<a href="courses.php">Buy Courses</a>';
-                echo '<a href="learnerCourses.php">My Courses</a>';
-               echo "<a href=userCart.php class=position-relative>Cart";
-                echo "<span id=cartNotification class=position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger>0</span>";
-               echo "</a>";
-            
+                echo '<a href="learnerCourses.php">My Courses</a>'
+                ?>
+              <a href="userCart.php" class="position-relative">Cart
+                <span id="cartNotification" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+               </a>
+            <?php
                 echo '<a href="messages.php">Chat</a>';
             ?>
                 <div class="dropdown">
