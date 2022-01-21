@@ -74,8 +74,9 @@
                     $available = false;
                 }
                 if ($available == true) {
+                    $id = uniqid();
                     $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                    $sql = "insert into adminstrators(Fname,Lname,Email,Password,Type) values('" . $_POST['fname'] . "','" . $_POST['lname'] . "','"  . $_POST['email'] . "','" . $hashed_password . "','adminstrator')";
+                    $sql = "insert into adminstrators(adminID,Fname,Lname,Email,Password,Type) values('" . $id . "','" . $_POST['fname'] . "','" . $_POST['lname'] . "','"  . $_POST['email'] . "','" . $hashed_password . "','adminstrator')";
                     $result = mysqli_query($conn, $sql);
                     if ($result) {
                         header("Location:manageAdmins.php");
