@@ -9,5 +9,5 @@ try{
 $conn = new mysqli($servername, $username, $password, $dbname);
 }
 
-catch(PDOException $e){die($e->getMessage ()); }
+catch(Exception $e){die($e->getMessage ()); }
 ?>
