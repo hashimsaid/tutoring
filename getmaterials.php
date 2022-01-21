@@ -28,9 +28,12 @@ include "connectToDb.php";
 include "menu.php";
 include "filters.php";
 
+$query2 = "SELECT * FROM courses";
+$results2 = $conn->query($query2);
+
 if (isset($_POST['upload'])) {
   $cID = $_POST['courseID'];
-
+echo $cID;
   $path = $_FILES['path'];
   $target_dir = "materials/";
   $target_file = $target_dir . basename($_FILES['path']['name']);
@@ -54,12 +57,29 @@ if (isset($_POST['upload'])) {
   <div class="mx-auto" style="width:25% ;">
     <h3> Add Materials </h3>
     <br>
-    CourseID : <input type='text' name="courseID" class="form-control">
+    Choose Course <select name="courseID" > 
+
+<?php
+
+ while ($row2 = $results2->fetch_array(MYSQLI_ASSOC)) { 
+
+ // echo "<option value= .$row2["courseID"]. >".$row2["courseName"]."</option>";
+    ?>
+    <option value= <?php echo $row2["courseID"]?>>  <?php echo $row2["courseName"]?> </option>
+  <br><br>
+  <?php } ?>
+
+
+</select>
 
     <br>
-    <input type='file' name='path' id="formFile" class="form-control">
+    <input type='file' name='path' id="formFile" >
     <br>
+
+
     <input type='submit' class="btn btn-primary" name="upload">
+
+
   </div>
 </form>
 
