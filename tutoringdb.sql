@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2022 at 03:24 PM
+-- Generation Time: Jan 21, 2022 at 04:08 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -91,8 +91,8 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`courseID`, `courseName`, `averageRating`, `price`, `description`, `picture`, `approved`) VALUES
-(0, 'Machine Learning', '3', 4000, 'Machine learning is a method of data analysis that automates analytical model building. It is a branch of artificial intelligence based on the idea that systems can learn from data, identify patterns and make decisions with minimal human intervention.', 'machineLearning.jpeg', 1),
-(1, 'Intro to programming', '4', 3300, 'Learn the basics of programming through HTML, CSS, Python, and JavaScript. Get extensive practice with hands-on exercises and projects that demonstrate your grasp of coding fundamentals, and build confidence in your ability to think and problem-solve like a programmer.', 'introtoprogramming.png', 1);
+(1, 'Data Structures', '0', 5000, 'ay haga', 'Ayya.gif', 1),
+(2, 'Data Structures2', '0', 10000, 'ay haga 2', 'assassins_creed_syndicate_hand_knife_stick_102982_1920x1080.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -150,7 +150,8 @@ CREATE TABLE `messages` (
 INSERT INTO `messages` (`id`, `sent_by`, `received_by`, `message`, `createdAt`) VALUES
 (120, '61eaba8c4aac3', '61eabd8ea6706', 'hi', '2022-01-21 03:21:10pm'),
 (121, '61eaba8c4aac3', '61eac18477237', 'hello', '2022-01-21 03:23:22pm'),
-(122, '61eac18477237', '61eaba8c4aac3', 'hi', '2022-01-21 03:23:37pm');
+(122, '61eac18477237', '61eaba8c4aac3', 'hi', '2022-01-21 03:23:37pm'),
+(123, '61eaba8c4aac3', '61eac18477237', 'alo', '2022-01-21 03:47:35pm');
 
 -- --------------------------------------------------------
 
@@ -161,8 +162,17 @@ INSERT INTO `messages` (`id`, `sent_by`, `received_by`, `message`, `createdAt`) 
 CREATE TABLE `orders` (
   `orderID` int(20) NOT NULL,
   `courseID` int(11) NOT NULL,
-  `learnerID` int(11) NOT NULL
+  `learnerID` varchar(255) NOT NULL,
+  `total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`orderID`, `courseID`, `learnerID`, `total`) VALUES
+(1892958798, 0, '61eac18477237', 0),
+(1892958798, 1, '61eac18477237', 0);
 
 -- --------------------------------------------------------
 
@@ -176,6 +186,13 @@ CREATE TABLE `selectedcourses` (
   `rating` int(11) DEFAULT NULL,
   `review` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `selectedcourses`
+--
+
+INSERT INTO `selectedcourses` (`courseID`, `learnerID`, `rating`, `review`) VALUES
+(2, 61, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -191,6 +208,13 @@ CREATE TABLE `tutors` (
   `Password` varchar(255) DEFAULT NULL,
   `Type` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tutors`
+--
+
+INSERT INTO `tutors` (`tutorID`, `Fname`, `Lname`, `Email`, `Password`, `Type`) VALUES
+(2, 'hashim', 'Tutor', 'Hashim.tutor@gmail.com', '$2y$10$nvc5RfKa1syZsvmTqdzxoOt0Y9xnhOd5W1gKPDqJgIBm5nA753n6y', 'tutor');
 
 --
 -- Indexes for dumped tables
@@ -219,7 +243,7 @@ ALTER TABLE `cart`
 -- Indexes for table `courses`
 --
 ALTER TABLE `courses`
-  ADD UNIQUE KEY `courseID` (`courseID`);
+  ADD PRIMARY KEY (`courseID`);
 
 --
 -- Indexes for table `messages`
@@ -254,16 +278,22 @@ ALTER TABLE `auditors`
   MODIFY `auditorID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `courses`
+--
+ALTER TABLE `courses`
+  MODIFY `courseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
 -- AUTO_INCREMENT for table `tutors`
 --
 ALTER TABLE `tutors`
-  MODIFY `tutorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `tutorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

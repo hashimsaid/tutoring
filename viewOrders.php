@@ -58,9 +58,8 @@
 session_start();
 include "connectToDb.php";
 include "menu.php";
-$conn = new mysqli($servername, $username, $password, $dbname);
 $query = "SELECT DISTINCT orderID,total,learnerID FROM orders";
-$results = $conn->query($query);
+$results = mysqli_query($conn, $query);
 ?>
 <div class="pt-4 mx-auto mb-4" style="background-color: #f0f0f2 ">
     <input style="border:none;width: 35%;" type="text" class="form-control mx-auto d-flex" name="Name_Search" id="Name_Search" placeholder="Search orders...">
@@ -85,7 +84,9 @@ $results = $conn->query($query);
 <div id="result">
     <body>
         <div class="mx-auto" style="width: 75%;">
-            <?php while ($row = $results->fetch_array(MYSQLI_ASSOC)) { 
+            <?php 
+            if (mysqli_num_rows($results) > 0) {
+            while ($row = $results->fetch_array(MYSQLI_ASSOC)) { 
                 
                 $orderID = $row["orderID"];
                 $sql = "SELECT DISTINCT courseID FROM  orders WHERE orderID = '$orderID'";
@@ -118,7 +119,10 @@ $results = $conn->query($query);
                         </div> 
                 </div>
 
-            <?php } ?>
+            <?php } } 
+            else{
+                echo "There is No Orders To view";
+            }?>
 
 
         </div>
