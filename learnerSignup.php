@@ -76,8 +76,9 @@
                     $available = false;
                 }
                 if ($available == true) {
+                    $id = uniqid();
                     $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                    $sql = "insert into learners(Fname,Lname,Email,Password,Type,profilePicture) values('" . $_POST['fname'] . "','" . $_POST['lname'] . "','"  . $_POST['email'] . "','" . $hashed_password . "','learner','pictures/profile/default.png')";
+                    $sql = "insert into learners(learnerID,Fname,Lname,Email,Password,Type,profilePicture) values('" . $id . "','" . $_POST['fname'] . "','" . $_POST['lname'] . "','"  . $_POST['email'] . "','" . $hashed_password . "','learner','pictures/profile/default.png')";
                     $result = mysqli_query($conn, $sql);
                     if ($result) {
                         header("Location:home.php");
