@@ -35,11 +35,12 @@ $getReceiverRow = mysqli_fetch_array($getReceiverResult);
 </div>
 
 <div class="mx-auto" style="width: 75%;">
-<form class="form-inline" action="" method = "POST">
+<form class="form-inline" action="" method = "POST" enctype="multipart/form-data" name="chat">
 	<input type="hidden" name = "sent_by" value = "<?=$_SESSION['ID']?>"/>
 	<input type="hidden" name = "received_by" value = "<?=$receiver?>"/>
-	<input type="text" name = "message"  class="form-control" placeholder = "Type your message here" required/>
+	<input type="text" name = "message"  class="form-control" placeholder = "Type your message here">
 	<input type = "submit" value='send' name='submit' id="submit" class="btn btn-primary">
+	<input type='file' name='path' id="formFile" >
 </form>
 </div>
 
@@ -51,7 +52,7 @@ $getReceiverRow = mysqli_fetch_array($getReceiverResult);
 		type: "GET",
 		url: "chat-box.php?receiver=<?=$receiver?>",
 		dataType: "html",
-		success: function(response){
+		success: function(response){	
 			$("#chat-box").html(response); 
 		}
 	});
@@ -67,10 +68,32 @@ if(isset($_POST['submit'])) {
 	$sent_by = $_POST['sent_by'];
 	$receiver = $_POST['received_by'];
 	$message = $_POST['message'];
+
+	$path = $_FILES['path'];
+	$target_file =  basename($_FILES['path']['name']);
+	$tmp_name = $_FILES['path']['tmp_name'];
+	
+
+	if (!empty($_POST['message'])) {
 	$sendMessage = "INSERT INTO messages(sent_by,received_by,message,createdAt,seen) VALUES('$sent_by','$receiver','$message','$createdAt',0)";
 	mysqli_query($conn,$sendMessage) or die(mysqli_error($conn));
+	}
+	else if($_FILES['path']['size'] != 0){
+		$sendMessage1 = "INSERT INTO messages(sent_by,received_by,message,createdAt,seen) VALUES('$sent_by','$receiver','$target_file','$createdAt',0)";
+		mysqli_query($conn,$sendMessage1) or die(mysqli_error($conn));
+		move_uploaded_file($tmp_name, "pictures/chat_files/$target_file");
+	} 
+	else if($_FILES['path']['size'] != 0 && $_FILES['path']['error'] != 0 && !empty($_POST['message'])){
+		$sendMessage = "INSERT INTO messages(sent_by,received_by,message,createdAt,seen) VALUES('$sent_by','$receiver','$message','$createdAt',0)";
+		mysqli_query($conn,$sendMessage) or die(mysqli_error($conn));
+		$sendMessage1 = "INSERT INTO messages(sent_by,received_by,message,createdAt,seen) VALUES('$sent_by','$receiver','$target_file','$createdAt',0)";
+		mysqli_query($conn,$sendMessage1) or die(mysqli_error($conn));
+		move_uploaded_file($tmp_name, "pictures/chat_files/$target_file");
+	}
+
 }
 ?>
+
 
 
 

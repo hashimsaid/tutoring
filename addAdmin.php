@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href="css/main.css">
     <style>
+
         body {
             background-image: url("pictures/website/backgroundPattern.png");
         }
@@ -24,6 +25,7 @@
             width: 35%;
             text-align: center;
         }
+        
     </style>
 </head>
 
