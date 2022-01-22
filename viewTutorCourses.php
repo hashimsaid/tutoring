@@ -40,7 +40,7 @@ $results = $conn->query($query);
         <div class="card-body text-center">
           <img class="card-img-top" src="pictures/courses/<?php echo $row["picture"] ?>">
           <h4 class="pt-2"><b><?php echo $row["courseName"] ?></b></h4>
-          <button onclick="clicked(this);" class="btn btn-primary" id=<?php echo $row["courseID"] ?>>send survey</button>
+         
         </div>
       </div>
     <?php } ?>
@@ -51,20 +51,6 @@ $results = $conn->query($query);
 
 </body>
 
-<script>
-    function clicked(button) {
-         button.disabled = true;
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-          if (this.status == 200) {
-            button.innerHTML = "sent";
-         }
-        };
-        var cID = button.id;
 
-        xhttp.open("GET", "addToCart.php?courseID=" + cID, true);
-        xhttp.send();
-    }
-</script>
 
 </html>
