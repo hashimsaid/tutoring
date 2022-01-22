@@ -124,7 +124,6 @@ $results = mysqli_query($conn, $query);
                 echo "There is No Orders To view";
             }?>
 
-
         </div>
 </div>
 </body>
