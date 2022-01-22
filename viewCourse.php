@@ -33,7 +33,7 @@ $results2 = $conn->query($query2);
 
     <div class="mx-auto" style="width: 100%;">
         <?php while ($row = $results->fetch_array(MYSQLI_ASSOC)) { ?>
-            <div class="p-5 d-flex " style=" background-color:#456666; opacity:87%;">
+            <div class="p-5 d-flex" style=" background-color:#456666; opacity:87%;">
                
                     <img src="pictures/courses/<?php echo $row["picture"] ?>" style="width:30%;">
                     <div class="p-3">

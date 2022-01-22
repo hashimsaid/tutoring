@@ -18,7 +18,7 @@
 session_start();
 include "connectToDb.php";
 include "menu.php";
-$query = "SELECT * FROM courses";
+$query = "SELECT * FROM courses WHERE courses.approved=1";
 $results = $conn->query($query);
 ?>
 
