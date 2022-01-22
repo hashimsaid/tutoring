@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="css/main.css">
     <style>
+        
         * {
             margin: 0;
         }
@@ -90,14 +91,6 @@
             left: 0%;
         }
 
-        .notification {
-        text-decoration: none;
-        margin: 15px 26px;
-        position: relative;
-        display: inline-block;
-        border-radius: 2px;
-        }
-
 
     </style>
 </head>
@@ -136,8 +129,8 @@
                 $result = $conn->query($sql) or die("Error running sql statement");
                 $check = $result->num_rows;
                 if($check>0){?>
-                <a href="surveyList.php" class="position-relative">Survey
-                <span class="position-absolute bottom-2 start-100 translate-middle bg-danger  rounded-circle"  style="padding:10px; bottom:10px"></span>
+                <a href="surveyList.php">Survey
+                <span class=" bg-danger  rounded-circle"  style="padding:10px; bottom:10px"></span>
                </a>    
                 <?php
                 }

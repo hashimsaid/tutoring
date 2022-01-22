@@ -70,7 +70,7 @@ $results = $conn->query($query);
         });
 
 
-        var timer, delay = 1000;
+        var timer, delay = 0;
 
         $('#s').on('click', function() {
             var array = []
