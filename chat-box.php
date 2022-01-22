@@ -21,7 +21,7 @@ $receiver = $_GET['receiver'];
 		$getMessageResult = mysqli_query($conn, $getMessage) or die(mysqli_error($conn));
 		if (mysqli_num_rows($getMessageResult) > 0) {
 			while ($getMessageRow = mysqli_fetch_array($getMessageResult)) {
-				if ($_SESSION['Type'] == "learner") {			
+				if ($_SESSION['Type'] == "learner") {
 					$sql = "UPDATE messages SET seen=1 WHERE seen=0 AND sent_by = '$receiver' AND received_by = '$_SESSION[ID]'
 					OR sent_by ='$_SESSION[ID]' AND received_by ='$receiver' ";
 					$updateTest = mysqli_query($conn, $sql);
@@ -30,7 +30,17 @@ $receiver = $_GET['receiver'];
 				<tr>
 					<div style="margin: 10;">
 						<td>
-							<h4 style="color: #007bff;display:inline"><?= $getMessageRow['sent_by'] ?></h4>
+							<?php
+								$sql2 = "Select * from learners where learnerID ='" . $getMessageRow['sent_by'] . "'";
+								$result = mysqli_query($conn, $sql2);
+								if ($row = mysqli_fetch_array($result)) {
+								}else{
+									$sql2 = "Select * from adminstrators where adminID ='" . $getMessageRow['sent_by'] . "'";
+									$result = mysqli_query($conn, $sql2);
+									$row = mysqli_fetch_array($result);
+								}
+							?>
+							<h4 style="color: #007bff;display:inline"><?= $row['Fname'] ?></h4>
 						</td>
 						<td>
 							<p class="text-center" style="display:inline;<?php
@@ -43,7 +53,7 @@ $receiver = $_GET['receiver'];
 																			}
 
 
-																			?>"><?= $getMessageRow['message']?></p>
+																			?>"><?= $getMessageRow['message'] ?></p>
 						</td>
 					</div>
 				</tr>
