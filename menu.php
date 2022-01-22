@@ -160,7 +160,6 @@
                 </div>
             <?php
             } else if ($_SESSION['Type'] == 'auditor') {
-                echo '<a href="courses.php">My courses</a>';
                 echo '<a href="auditorComments.php">Chats Review</a>'
             ?>
                 <div class="dropdown">
