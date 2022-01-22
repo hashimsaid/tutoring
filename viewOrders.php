@@ -95,12 +95,10 @@ $results = mysqli_query($conn, $query);
                 while ($index = $result->fetch_array(MYSQLI_ASSOC)) { 
                     $coursesCount++;
                 }
-                
                 $learnerID = $row["learnerID"];
-
                 $namesSQL = "SELECT Fname,Lname FROM learners WHERE learnerID = '$learnerID' ";
-                $namesResult = $conn->query($namesSQL);
-               
+                $namesResult = $conn->query($namesSQL) or die("Error in select statement");
+
                 $firstName = "NoName";
                 $lastName = "NoName";
                 while ($i = $namesResult->fetch_array(MYSQLI_ASSOC)) { 
@@ -108,7 +106,7 @@ $results = mysqli_query($conn, $query);
                    $lastName = $i["Lname"];
                 }
                 ?>
-                <div class="p-2 row  bg-light position-relative" style="box-shadow: 10px 10px rgba(0, 0, 0, 0.5);">
+                <div class="p-2 row  bg-light position-relative m-5" style="box-shadow: 10px 10px rgba(0, 0, 0, 0.5);">
                     <div class=" p-4 ">
                         <h2>Order ID : <?php echo $row["orderID"]?></h2>
                         <h4>Courses Count : <?php echo $coursesCount?></h4>
@@ -118,13 +116,11 @@ $results = mysqli_query($conn, $query);
                         <h5>Total : <?php echo $row["total"]?></h5>
                         </div> 
                 </div>
-
+            </div>
             <?php } } 
             else{
                 echo "There is No Orders To view";
             }?>
-
-        </div>
 </div>
 </body>
 <script>
