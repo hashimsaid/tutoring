@@ -10,9 +10,8 @@ include 'connectToDb.php';
 include "menu.php";
 ?>
 <body>
-    
+
 <div class="box" >
-        <form method='post'>
         <h4>Write your Review</h4>
                     
                         <h5 class="p-1 mx-2">Tap to rate </h5>
@@ -34,13 +33,10 @@ include "menu.php";
                         <button onclick="clicked(this);" class="button rounded" id='<?php echo $_GET["courseID"]?>'>submit review</button>
                     </div>
 
-        </form> 
 </div>
         <div id="snackbar" style="border-radius:10px"></div>
-        <div id="snackbar" style="border-radius:10px"></div>
 
- </body>
-<script>
+        <script>
                         var sim = 0;
                         var review = "";
                         $("input[type='radio']").click(function() {
@@ -66,7 +62,6 @@ include "menu.php";
                         }
 
                         function clicked(button) {
-
                             review = document.getElementById("reviewText").value;
                             if (!review || review.length === 0) {
                                 snackBar2();
@@ -75,15 +70,16 @@ include "menu.php";
                             } else {
                                 var xhttp = new XMLHttpRequest();
                                 xhttp.onreadystatechange = function() {
-                                    var x = document.getElementById("displayReviews");
-                                    x.innerHTML = this.responseText;
+                                    window.location.href='home.php';
                                 };
                                 var cID = button.id;
-                                xhttp.open("GET", "reviewCourse.php?courseID=" + cID + "&rating=" + sim + "&review=" + review);
+                                xhttp.open("GET", "reviewCourse.php?courseID=" + cID + "&rating=" + sim + "&review=" + review+ "&survey=" + 1);
                                 xhttp.send();
                             }
                         }
  </script>
+ </body>
+
 
 <style>
     @import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
@@ -235,7 +231,6 @@ include "menu.php";
         border-radius: 2px;
         padding: 12px;
         position: fixed;
-        z-index: 1;
         left: 50%;
         bottom: 30px;
         font-size: 17px;
@@ -243,55 +238,9 @@ include "menu.php";
 
     #snackbar.show {
         visibility: visible;
-        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
         animation: fadein 0.5s, fadeout 0.5s 2.5s;
     }
-
-    @-webkit-keyframes fadein {
-        from {
-            bottom: 0;
-            opacity: 0;
-        }
-
-        to {
-            bottom: 30px;
-            opacity: 1;
-        }
-    }
-
-    @keyframes fadein {
-        from {
-            bottom: 0;
-            opacity: 0;
-        }
-
-        to {
-            bottom: 30px;
-            opacity: 1;
-        }
-    }
-
-    @-webkit-keyframes fadeout {
-        from {
-            bottom: 30px;
-            opacity: 1;
-        }
-        
-        to {
-            bottom: 0;
-            opacity: 0;
-        }
-    }
-
-    @keyframes fadeout {
-        from {
-            bottom: 30px;
-            opacity: 1;
-        }
-
-        to {
-            bottom: 0;
-            opacity: 0;
-        }
-    }
 </style>
+
+</body>
+</html>

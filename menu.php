@@ -14,7 +14,7 @@
         .topnav {
             position: absolute;
             top: 10%;
-            left: 35%;
+            left: 30%;
         }
 
         .topnav a {
@@ -132,23 +132,18 @@
                 echo '<a href="courses.php">Buy Courses</a>';
                 echo '<a href="learnerCourses.php">My Courses</a>';
                 include 'connectToDb.php';
-                $sql = "SELECT * FROM selectedCourses WHERE learnerID = '$_SESSION[id]' ";
-                $result = $conn->query($sql);
+                $sql = "SELECT * FROM selectedCourses WHERE learnerID = '$_SESSION[ID]' AND survey=1";
+                $result = $conn->query($sql) or die("Error running sql statement");
                 $check = $result->num_rows;
-                $coursesCount = 0;
-
-                if($check>0){
-                    while ($index = $result->fetch_array(MYSQLI_ASSOC)) { 
-                        $coursesCount++;
-                    }
+                if($check>0){?>
+                <a href="surveyList.php" class="position-relative">Survey
+                <span class="position-absolute bottom-2 start-100 translate-middle bg-danger  rounded-circle"  style="padding:10px; bottom:10px"></span>
+               </a>    
+                <?php
                 }
-
-                echo $coursesCount;
-
-
                 ?>
               <a href="userCart.php" class="position-relative">Cart
-                <span id="cartNotification" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                <span id="cartNotification" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">0</span>
                </a>
             <?php
                 echo '<a href="messages.php">Chat</a>';

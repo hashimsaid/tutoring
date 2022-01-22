@@ -5,6 +5,14 @@ include "connectToDb.php";
 session_start();
 $learnerID = $_SESSION["ID"];
 
+$survey=$_GET["survey"];
+$courseID = $_GET["courseID"];
+
+if($survey==1){
+    $query2 = "UPDATE selectedcourses SET survey = 0 WHERE courseID='$courseID' AND learnerID='$_SESSION[ID]' ";
+    $result = $conn->query($query2) or die("Error Updating survey validation");
+}
+
 $query = "UPDATE selectedCourses SET rating='" . $_GET["rating"] . "' , review='" . $_GET["review"] . "' WHERE learnerID='" . $learnerID . "' AND courseID='" . $_GET["courseID"] . "'";
 
 if ($conn->query($query)) {
