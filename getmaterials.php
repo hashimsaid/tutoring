@@ -28,12 +28,11 @@ include "connectToDb.php";
 include "menu.php";
 include "filters.php";
 
-$query2 = "SELECT * FROM courses";
+$query2 = "SELECT * FROM courses WHERE tutorID='$_SESSION[ID]'";
 $results2 = $conn->query($query2);
 
 if (isset($_POST['upload'])) {
   $cID = $_POST['courseID'];
-echo $cID;
   $path = $_FILES['path'];
   $target_dir = "materials/";
   $target_file = $target_dir . basename($_FILES['path']['name']);
