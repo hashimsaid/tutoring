@@ -53,6 +53,7 @@ include "menu.php";
 		$lastMessageResult = mysqli_query($conn, $lastMessage);
 		if (mysqli_num_rows($lastMessageResult) > 0) {
 			while ($lastMessageRow = mysqli_fetch_array($lastMessageResult)) {
+				
 				$sent_by = $lastMessageRow['sent_by'];
 
 				$getSender = "SELECT * FROM learners WHERE learnerID = '$sent_by'";

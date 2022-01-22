@@ -135,7 +135,7 @@
                 <?php
                 }
                 ?>
-              <a href="userCart.php" class="position-relative">Cart
+                <a href="userCart.php" class="position-relative">Cart
                 <span id="cartNotification" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">0</span>
                </a>
             <?php

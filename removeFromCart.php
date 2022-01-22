@@ -4,7 +4,7 @@ include "connectToDb.php";
 session_start();
 $learnerID = $_SESSION["ID"];
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+
 if ($conn->connect_error) {
   exit('Could not connect');
 }

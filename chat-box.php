@@ -16,11 +16,12 @@ $receiver = $_GET['receiver'];
 		<?php
 
 		$getMessage = "SELECT * FROM messages WHERE sent_by = '$receiver' AND received_by = '$_SESSION[ID]'
-	 OR sent_by ='$_SESSION[ID]' AND received_by ='$receiver' ORDER BY createdAt asc";
+	    OR sent_by ='$_SESSION[ID]' AND received_by ='$receiver' ORDER BY createdAt asc";
 
 		$getMessageResult = mysqli_query($conn, $getMessage) or die(mysqli_error($conn));
 
 		if (mysqli_num_rows($getMessageResult) > 0) {
+
 			while ($getMessageRow = mysqli_fetch_array($getMessageResult)) {
 				if ($_SESSION['Type'] == "learner") {
 					$sql = "UPDATE messages SET seen=1 WHERE seen=0 AND sent_by = '$receiver' AND received_by = '$_SESSION[ID]'
@@ -43,6 +44,7 @@ $receiver = $_GET['receiver'];
 							?>
 							<h4 style="color: #007bff;display:inline"><?= $row['Fname'] ?></h4>
 						</td>
+						
 						<td>
 							<?php 
 							

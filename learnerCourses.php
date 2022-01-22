@@ -1,12 +1,22 @@
 <html>
-<header>
+<head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
-</header>
+  <style>
+    body {
+      background-image: url("pictures/website/backgroundPattern.png");
+    }
+
+    .itemCard:hover {
+      background-color: rgb(240, 240, 240);
+    }
+  </style>
+
+</head>
 
 <?php
 session_start();
@@ -20,15 +30,6 @@ $results = $conn->query($query);
 
 <body>
 
-  <style>
-    body {
-      background-image: url("pictures/website/backgroundPattern.png");
-    }
-
-    .itemCard:hover {
-      background-color: rgb(240, 240, 240);
-    }
-  </style>
 
   <br><br><br>
   <div class="card-columns col justify-content-center mx-auto" style="width:100%;">

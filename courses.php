@@ -18,19 +18,18 @@
 session_start();
 include "connectToDb.php";
 include "menu.php";
-$conn = new mysqli($servername, $username, $password, $dbname);
 $query = "SELECT * FROM courses";
 $results = $conn->query($query);
 ?>
+
 <div class="p-2 pt-3 mb-4" style="background-color: #f0f0f0 ">
     <input style="border:none;width: 35%;" type="text" class="form-control d-flex mx-auto" name="Name_Search" id="Name_Search" placeholder="Search courses...">
 </div>
-<div id="result">
 
+<div id="result">
     <body>
 
         <div class="mx-auto" style="width: 75%;">
-
 
             <?php while ($row = $results->fetch_array(MYSQLI_ASSOC)) { ?>
                 <div class="mb-5 row g-0 bg-light position-relative" style="box-shadow: 10px 10px rgba(0, 0, 0, 0.5);">
@@ -68,7 +67,7 @@ $results = $conn->query($query);
                                 button.disabled = true;
                                 var xhttp = new XMLHttpRequest();
                                 xhttp.onreadystatechange = function() {
-                                    if (this.status == 200) {
+                                    if (this.readyState==4 && this.status == 200) {
                                         button.innerHTML = this.responseText;
                                     }
                                 };
@@ -89,6 +88,7 @@ $results = $conn->query($query);
 
 
 </body>
+
 <script>
     $(document).ready(function() {
         $('#Name_Search').keyup(function() {

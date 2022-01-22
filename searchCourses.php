@@ -8,7 +8,7 @@ $cols  = $result->num_rows;
 if ($cols < 1) {
     echo '<div class="warning">No results found</div>';
 } else { ?>
-    <div class="mx-auto" style="width: 75%;">
+    <div class="mx-auto" style="width: 75%;"> 
         <?php
         while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
         ?>

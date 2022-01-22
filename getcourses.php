@@ -5,8 +5,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 
 
-
-
 <style>
     body {
         background-image: url("pictures/website/backgroundPattern.png");
@@ -53,6 +51,8 @@ if (isset($_POST['submit'])) {
     $target_file = $target_dir . basename($_FILES['path']['name']);
     $tmp_name = $_FILES['path']['tmp_name'];
     $name = basename($_FILES['path']['name']);
+
+    
     if ($_FILES['path']['size'] == 0 && $_FILES['path']['error'] == 0) {
     } else {
         $sql = "INSERT INTO courses (courseName,price,description,picture,approved , tutorID) 
@@ -69,6 +69,7 @@ if (isset($_POST['submit'])) {
 }
 
 ?>
+
 <form method='post' enctype="multipart/form-data" class="box">
 
     <div class="mx-auto" style="width:25% ;">

@@ -37,7 +37,7 @@
     ?>
     <div class="box">
         <h2>Log in to your account!</h2><br>
-        <form action="" name="signup" method="post" onsubmit="return validateLogin()">
+        <form action="" name="login" method="post" onsubmit="return validateLogin()">
             <input type="text" name="email" placeholder="Email"><br>
             <input type="password" name="password" placeholder="Password"><br>
             <input type="submit" name="login" value="Log in"><br>
@@ -45,8 +45,11 @@
         </form>
     
     <?php
+
     if (isset($_POST['login'])) {
+
         if (filterText($_POST['password']) && filterEmail($_POST['email'])) {
+            
             $sql = "Select * from learners where Email ='" . $_POST["email"] . "'";
             $result = mysqli_query($conn, $sql);
             if ($row = mysqli_fetch_array($result)) {
@@ -118,10 +121,10 @@
     <script>
         function validateLogin() {
             let x = "";
-            if (document.forms["signup"]["email"].value == "") {
+            if (document.forms["login"]["email"].value == "") {
                 x += "Email must be filled out!\n";
             }
-            if (document.forms["signup"]["password"].value == "") {
+            if (document.forms["login"]["password"].value == "") {
                 x += "Password must be filled out!";
             }
             if (x == "") {

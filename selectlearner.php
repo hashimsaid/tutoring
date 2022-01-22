@@ -55,7 +55,7 @@
 session_start();
 include "connectToDb.php";
 include "menu.php";
-$conn = new mysqli($servername, $username, $password, $dbname);
+
 $query = "SELECT * FROM learners";
 $results = $conn->query($query);
 ?>

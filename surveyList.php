@@ -22,11 +22,13 @@ body {
             height:80px;
         }
 </style>
+
 <body>
 <?php
 session_start();
 include 'connectToDb.php';
 include "menu.php";
+
 $sql = "SELECT courses.courseName,selectedcourses.courseID FROM selectedCourses INNER JOIN courses ON courses.courseID=selectedCourses.courseID WHERE learnerID='$_SESSION[ID]' AND selectedCourses.survey=1 ";
 $result = $conn->query($sql) or die(mysqli_error($conn));
 

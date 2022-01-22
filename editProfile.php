@@ -28,12 +28,14 @@
 </head>
 
 <body>
+
     <?php
     session_start();
     include "connectToDb.php";
     include "menu.php";
     include "filters.php";
     ?>
+
     <div class="box">
         <img src="<?php echo $_SESSION['profilePicture']; ?>" alt="profile picture" width="200px" style="border-radius: 50%;"><br>
         <form action="" method="post" onsubmit="return validateEdit()" name="edit" enctype="multipart/form-data">
@@ -49,6 +51,7 @@
             $target_file = $target_dir . basename($_FILES['profile']['name']);
             $tmp_name = $_FILES['profile']['tmp_name'];
             $name = basename($_FILES['profile']['name']);
+            
             if ($_FILES['profile']['size'] == 0 && $_FILES['profile']['error'] == 0) {
                 $target_file = $_SESSION["profilePicture"];
             }

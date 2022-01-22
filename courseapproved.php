@@ -1,55 +1,56 @@
 <html>
 
 <head>
+    <style>
+        body {
+            background-image: url("pictures/website/backgroundPattern.png");
+        }
+
+        .link {
+            margin: 200px;
+            text-decoration: none;
+            border-radius: 20%;
+            background-color: #38968d;
+            color: white;
+            border-radius: 10%;
+            padding: 6px;
+            font-weight: bold;
+        }
+
+        .link:hover {
+            background-color: red;
+        }
+
+        table {
+            margin: 50px;
+            border-collapse: collapse;
+            width: 70%;
+        }
+
+        td,
+        th {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        tr {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #38968d;
+            color: white;
+        }
+    </style>
 </head>
-<style>
-    body {
-        background-image: url("pictures/website/backgroundPattern.png");
-    }
 
-    .link {
-        margin: 200px;
-        text-decoration: none;
-        border-radius: 20%;
-        background-color: #38968d;
-        color: white;
-        border-radius: 10%;
-        padding: 6px;
-        font-weight: bold;
-    }
-
-    .link:hover {
-        background-color: red;
-    }
-
-    table {
-        margin: 50px;
-        border-collapse: collapse;
-        width: 70%;
-    }
-
-    td,
-    th {
-        border: 1px solid black;
-        padding: 8px;
-    }
-
-    tr {
-        background-color: #f2f2f2;
-    }
-
-    tr:hover {
-        background-color: #ddd;
-    }
-
-    th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: left;
-        background-color: #38968d;
-        color: white;
-    }
-</style>
 
 
 <?php
@@ -63,14 +64,13 @@ $results = $conn->query($query);
 
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function() {
         $("#form1 #select-all").click(function() {
             $("#form1 input[type='checkbox']").prop('checked', this.checked);
         });
 
-
-        var timer, delay = 0;
 
         $('#s').on('click', function() {
             var array = []
@@ -94,6 +94,8 @@ $results = $conn->query($query);
 
     });
 </script>
+
+
 <form id="form1" method="post">
 
     <table>
@@ -124,7 +126,6 @@ $results = $conn->query($query);
     </table>
     </p>
     <input type="submit" name='Approve' value="Approve " class="link" id="s">
-
 
 </form>
 

@@ -23,6 +23,7 @@
 </style>
 
 <?php
+
 session_start();
 include "connectToDb.php";
 include "menu.php";
@@ -48,7 +49,7 @@ if (isset($_POST['upload'])) {
 
   move_uploaded_file($tmp_name, "$target_dir/$name");
 }
-//test
+
 ?>
 
 <form action="" method="post" name="edit" enctype="multipart/form-data" class="box">
@@ -57,22 +58,18 @@ if (isset($_POST['upload'])) {
     <h3> Add Materials </h3>
     <br>
     Choose Course <select name="courseID" > 
-
 <?php
 
- while ($row2 = $results2->fetch_array(MYSQLI_ASSOC)) { 
-
- // echo "<option value= .$row2["courseID"]. >".$row2["courseName"]."</option>";
-    ?>
-    <option value= <?php echo $row2["courseID"]?>>  <?php echo $row2["courseName"]?> </option>
+ while ($row2 = $results2->fetch_array(MYSQLI_ASSOC)) { ?>
+  <option value= <?php echo $row2["courseID"]?>>  <?php echo $row2["courseName"]?> </option>
   <br><br>
   <?php } ?>
 
-
 </select>
 
+
     <br>
-    <input type='file' name='path' id="formFile" >
+      <input type='file' name='path' id="formFile">
     <br>
 
 

@@ -58,24 +58,28 @@
                     echo "<div class='warning'><br>Someone else is using that email!</div>";
                     $available = false;
                 }
+
                 $sql = "Select * from adminstrators where Email ='" . $_POST["email"] . "' ";
                 $result = mysqli_query($conn, $sql);
                 if ($row = mysqli_fetch_array($result)) {
                     echo "<div class='warning'><br>Someone else is using that email!</div>";
                     $available = false;
                 }
+
                 $sql = "Select * from tutors where Email ='" . $_POST["email"] . "' ";
                 $result = mysqli_query($conn, $sql);
                 if ($row = mysqli_fetch_array($result)) {
                     echo "<div class='warning'><br>Someone else is using that email!</div>";
                     $available = false;
                 }
+
                 $sql = "Select * from auditor where Email ='" . $_POST["email"] . "' ";
                 $result = mysqli_query($conn, $sql);
                 if ($result) {
                     echo "<div class='warning'><br>Someone else is using that email!</div>";
                     $available = false;
                 }
+
                 if ($available == true) {
                     $id = uniqid();
                     $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -87,6 +91,7 @@
                         echo "<div class='warning'><br>Error inserting into database!</div>";
                     }
                 }
+                
             } else {
                 echo "<div class='warning'><br>Please make sure the email is valid and don't use special characters in the password!</div>";
             }

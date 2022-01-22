@@ -51,7 +51,7 @@ if($_SESSION['Type']=='learner'){
 if (mysqli_num_rows($result) > 0) {
 
     $output .= '<div class="box"><h4> Search Result </h4>';
-    $output .= '<div class="table-responsive">
+    $output .= '<div class="table">
                 <table id="table1" class="table table bordered">
                     <tr>
                         <th><th>
@@ -61,8 +61,8 @@ if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_array($result)) {
 
         $output .= '<tr>
-                        <td>' . $row["Fname"] . '<td>
-                        <td>' . "<a id='send' href=" . 'message.php?receiver=' . $row[0] . '>' . "Send message </a>";
+                        <td>' . $row["Fname"] . '</td>
+                        <td>' . "<a id='send' href=" . 'message.php?receiver=' . $row[0] . '>' . "Send message </a></td>";
         '
                     </tr>
                     </table> 
