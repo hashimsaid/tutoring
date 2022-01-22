@@ -43,7 +43,7 @@ if ($cols < 1) {
                    $lastName = $i["Lname"];
                 }
                 ?>
-                <div class="p-2 row  bg-light position-relative" style="box-shadow: 10px 10px rgba(0, 0, 0, 0.5);">
+                <div class="p-2 row  bg-light position-relative">
                     <div class=" p-4 ">
                         <h2>Order ID : <?php echo $row["orderID"]?></h2>
                         <h4>Courses Count : <?php echo $coursesCount?></h4>
