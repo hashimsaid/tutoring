@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2022 at 02:47 AM
+-- Generation Time: Jan 22, 2022 at 10:15 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -58,6 +58,13 @@ CREATE TABLE `auditors` (
   `Type` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `auditors`
+--
+
+INSERT INTO `auditors` (`auditorID`, `Fname`, `Lname`, `Email`, `Password`, `Type`) VALUES
+(1, 'auditor', 'test', 'auditor.test@gmail.com', '123', 'auditor');
+
 -- --------------------------------------------------------
 
 --
@@ -74,7 +81,8 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`courseID`, `learnerID`) VALUES
-(3, 2);
+(8, 2),
+(8, 2);
 
 -- --------------------------------------------------------
 
@@ -98,9 +106,11 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`courseID`, `courseName`, `averageRating`, `price`, `description`, `picture`, `approved`, `tutorID`) VALUES
-(3, 'Data Structures', '4', 5000, 'ay haga', 'assassins_creed_iv_black_flag_edward_kenway_weapons_crows_battle_97582_1920x1080.jpg', 1, 2),
-(4, 'Data Structures 2', '0', 100000, 'ay haga 2', 'azwraith_phantom_lancer_dota_2_art_94278_1920x1080.jpg', 1, 2),
-(5, 'React JS', '0', 7000, 'react js course for noobs', 'React.jfif', 1, 1);
+(10, 'Web Development', '0', 7000, 'A Web Designing course belongs to the field of Computer Science and IT. It enables students to learn various techniques, tools and programming languages in order to create and maintain web pages. There is an array of courses in this field ranging from certificate and Diploma courses to UG, PG and PGDM programs.', 'ilya-pavlov-OqtafYT5kTw-unsplash.jpg', 1, 2),
+(11, 'Data Structures', '0', 5000, 'An overview of data structure concepts, arrays, stack, queues, trees, and graphs. Discussion of various implementations of these data objects, programming styles, and run-time representations. Course also examines algorithms for sorting, searching and some graph algorithms.', 'christopher-gower-m_HRfLhgABo-unsplash.jpg', 1, 2),
+(12, 'Game Dev', '0', 9000, 'In this course you will learn the fundamentals of game design, including an understanding of the game world, storytelling, gameplay, user experience, and game technology. You will continue developing videogames using industry standard game development tools, including the Unity game engine.', 'lorenzo-herrera-p0j-mE6mGo4-unsplash.jpg', 1, 2),
+(13, 'React', '0', 7000, 'Format: This course combines lecture, discussion and demonstrations with hands-on labs. React js is a client side UI building library to develop web based applications. React is a library developed by Facebook, and it is designed to build large applications with data that changes over time.', 'download.png', 1, 2),
+(14, 'Ethical Hacking', '0', 10000, 'This ethical hacking course reveals the fundamental techniques cyber attackers use to exploit vulnerabilities in systems and the methods used to protect such systems against possible cyberattacks. You will master the processes of conducting penetration testing on devices and applications and maintain anonymity on the web.', 'markus-spiske-iar-afB0QQw-unsplash.jpg', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -126,7 +136,8 @@ INSERT INTO `learners` (`learnerID`, `Fname`, `Lname`, `Email`, `Password`, `pro
 ('61eabd8ea6706', 'shihab', 'learner', 'shihab.learner@mail.com', '$2y$10$sI30TgE0wh.BwD0/sSPFjOQpiM8Od7mYKM4pVra.WE7bbiR2cTukq', 'pictures/profile/default.png', 'learner'),
 ('61eac18477237', 'fady', 'learner', 'fady@gmail.com', '$2y$10$6cgcsNhmsXfHYxKYg.H2vejo1pB70rKDCAMPdu.Pex4liX7IAXDT.', 'pictures/profile/default.png', 'learner'),
 ('61eb1f9760bb7', 'learnertest', 'learnertest', 'learnertest@gmail.com', '$2y$10$A0WGN7y0LRst4bW5x85J4evxhN1D4NbNzi.IH9EkFA1pvvLQ6QRbW', 'pictures/profile/default.png', 'learner'),
-('61eb3a15352f7', 'ahmed', 'kamal', 'ahmed.kamal@gmail.com', '$2y$10$f4FQIh8qEecQMfFlKTDUiOMAT5ibDQStDX.PbYJwdsBP7wfxQs4me', 'pictures/profile/drow_ranger_dota_2_art_95109_1920x1080.jpg', 'learner');
+('61eb3a15352f7', 'ahmed', 'kamal', 'ahmed.kamal@gmail.com', '$2y$10$f4FQIh8qEecQMfFlKTDUiOMAT5ibDQStDX.PbYJwdsBP7wfxQs4me', 'pictures/profile/drow_ranger_dota_2_art_95109_1920x1080.jpg', 'learner'),
+('61eba31a9faea', 'tamer', 'aly', 'tamer@gmail.com', '$2y$10$5e2xNC3MBX2owDtnzynU1Oc/CKFcb7BWjqVeISSG/YTwNNZsigK02', 'pictures/profile/default.png', 'learner');
 
 -- --------------------------------------------------------
 
@@ -138,17 +149,6 @@ CREATE TABLE `materials` (
   `courseID` int(11) NOT NULL,
   `materialPath` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `materials`
---
-
-INSERT INTO `materials` (`courseID`, `materialPath`) VALUES
-(4, 'materials/Sheet 4.2 Networks.pdf'),
-(4, 'materials/e6a6eff912969541.jpg'),
-(4, 'materials/e6a6eff912969541.jpg'),
-(3, 'materials/R.png'),
-(5, 'materials/TechnicLauncher.exe');
 
 -- --------------------------------------------------------
 
@@ -162,17 +162,9 @@ CREATE TABLE `messages` (
   `received_by` varchar(255) NOT NULL,
   `message` varchar(255) CHARACTER SET latin1 NOT NULL,
   `createdAt` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `seen` int(11) NOT NULL
+  `seen` int(11) NOT NULL,
+  `comment` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `messages`
---
-
-INSERT INTO `messages` (`id`, `sent_by`, `received_by`, `message`, `createdAt`, `seen`) VALUES
-(126, '61eb3a15352f7', '61eaba8c4aac3', 'alo', '2022-01-22 12:00:56am', 1),
-(127, '61eaba8c4aac3', '61eb3a15352f7', 'hla', '2022-01-22 12:01:32am', 1),
-(128, '61eaba8c4aac3', '61eb3a15352f7', 'what ?', '2022-01-22 12:01:51am', 1);
 
 -- --------------------------------------------------------
 
@@ -192,17 +184,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`orderID`, `courseID`, `learnerID`, `total`) VALUES
-(1948361932, 3, '61eac18477237', 5000),
-(155629798, 4, '61eac18477237', 100000),
-(841011446, 3, '61eac18477237', 105000),
-(841011446, 4, '61eac18477237', 105000),
-(1339974304, 3, '61eb1f9760bb7', 105000),
-(1339974304, 4, '61eb1f9760bb7', 105000),
-(527301535, 4, '61eac18477237', 100000),
-(26405213, 3, '61eac18477237', 5000),
-(412798758, 3, '61eb3a15352f7', 105000),
-(412798758, 4, '61eb3a15352f7', 105000),
-(85507140, 5, '61eb3a15352f7', 7000);
+(1471664575, 13, '61eac18477237', 7000),
+(497061545, 12, '61eac18477237', 9000),
+(1563285105, 14, '61eac18477237', 10000);
 
 -- --------------------------------------------------------
 
@@ -223,9 +207,9 @@ CREATE TABLE `selectedcourses` (
 --
 
 INSERT INTO `selectedcourses` (`courseID`, `learnerID`, `rating`, `review`, `survey`) VALUES
-(3, '61eb3a15352f7', 4, 'zby', 0),
-(4, '61eb3a15352f7', NULL, NULL, 0),
-(5, '61eb3a15352f7', NULL, NULL, 0);
+(12, '61eac18477237', NULL, NULL, 0),
+(13, '61eac18477237', NULL, NULL, 0),
+(14, '61eac18477237', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -308,19 +292,19 @@ ALTER TABLE `tutors`
 -- AUTO_INCREMENT for table `auditors`
 --
 ALTER TABLE `auditors`
-  MODIFY `auditorID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `auditorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `courseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `courseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=190;
 
 --
 -- AUTO_INCREMENT for table `tutors`
