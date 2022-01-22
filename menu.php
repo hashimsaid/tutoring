@@ -130,7 +130,22 @@
             <?php
             } else if ($_SESSION['Type'] == 'learner') {
                 echo '<a href="courses.php">Buy Courses</a>';
-                echo '<a href="learnerCourses.php">My Courses</a>'
+                echo '<a href="learnerCourses.php">My Courses</a>';
+                include 'connectToDb.php';
+                $sql = "SELECT * FROM selectedCourses WHERE learnerID = '$_SESSION[id]' ";
+                $result = $conn->query($sql);
+                $check = $result->num_rows;
+                $coursesCount = 0;
+
+                if($check>0){
+                    while ($index = $result->fetch_array(MYSQLI_ASSOC)) { 
+                        $coursesCount++;
+                    }
+                }
+
+                echo $coursesCount;
+
+
                 ?>
               <a href="userCart.php" class="position-relative">Cart
                 <span id="cartNotification" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
